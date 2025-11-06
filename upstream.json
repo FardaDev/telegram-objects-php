@@ -1,8 +1,9 @@
 {
     "source": "defstudio/telegraph",
     "repository": "https://github.com/defstudio/telegraph.git",
-    "last_commit": "initial",
-    "last_checked": "2025-11-06T16:50:00Z",
+    "last_commit": "0f4a6cf45a902e7136a5bbafda26bec36a10e748",
+    "last_commit_short": "0f4a6cf4",
+    "last_checked": "2025-11-06T21:00:00Z",
     "tracked_files": [
         "src/DTO/*.php",
         "src/Enums/*.php",
@@ -11,6 +12,12 @@
         "src/Exceptions/*.php",
         "tests/Unit/DTO/*.php"
     ],
-    "extraction_date": "2025-11-06T16:50:00Z",
-    "notes": "Initial extraction from Telegraph project for framework-agnostic DTO library"
+    "extraction_date": "2025-11-06T21:00:00Z",
+    "extracted_files": [
+        "src/Contracts/DownloadableInterface.php",
+        "src/Exceptions/TelegramException.php",
+        "src/Exceptions/FileException.php",
+        "src/Exceptions/KeyboardException.php"
+    ],
+    "notes": "Initial extraction from Telegraph project for framework-agnostic DTO library. Commit 0f4a6cf4 corresponds to 'Update CHANGELOG' from Telegraph main branch."
 }

@@ -2,6 +2,7 @@
 
 /**
  * Extracted from: vendor_sources/telegraph/src/Contracts/Downloadable.php
+ * Telegraph commit: 0f4a6cf4
  * Date: 2025-11-06
  */
 

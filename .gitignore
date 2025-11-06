@@ -14,8 +14,6 @@ Thumbs.db
 # IDE / Editor
 /.idea/
 /.vscode/
-/.cursor/
-/.kiro/
 
 # PHPUnit / testing
 /phpunit.xml
