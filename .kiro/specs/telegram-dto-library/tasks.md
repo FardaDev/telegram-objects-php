@@ -184,7 +184,7 @@ public static function fromArray(array $data): self
   - Verify proper validation of interactive element constraints
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
 
-- [ ] 7. Extract and implement payment DTO classes
+- [x] 7. Extract and implement payment DTO classes
 - [x] 7.1 Implement payment flow DTOs
 
 
@@ -227,14 +227,20 @@ public static function fromArray(array $data): self
   - Handle chat administration event data
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
 
-- [ ] 8.2 Implement message interaction DTOs
+- [x] 8.2 Implement message interaction DTOs
+
   - Extract Reaction, ReactionType DTOs for message reactions
   - Extract Entity DTO for message entities (mentions, hashtags, URLs)
   - Extract WriteAccessAllowed DTO for permission changes
   - Add proper validation for entity types and ranges
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 3.5_
 
-- [ ] 8.3 Write tests for administrative DTOs
+- [x] 8.3 Write tests for administrative DTOs
+
+
+
+
+
   - Create unit tests for chat management DTOs
   - Test permission and status validation logic
   - Test message entity parsing and validation
