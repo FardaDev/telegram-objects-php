@@ -170,6 +170,9 @@ Test files that are based on or inspired by Telegraph tests should also include 
   - Implement proper money amount handling
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 3.5_
 
+
+
+
 - [x] 7.3 Write tests for payment DTOs
 
 

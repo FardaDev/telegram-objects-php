@@ -33,6 +33,7 @@ class TelegramUpdate implements ArrayableInterface, SerializableInterface
      * @param ChatMemberUpdate|null $botChatStatusChange Bot's chat member status was updated
      * @param PreCheckoutQuery|null $preCheckoutQuery New incoming pre-checkout query
      * @param ChatJoinRequest|null $chatJoinRequest Request to join the chat has been sent
+     * @param Reaction|null $messageReaction A reaction to a message was changed by a user
      */
     private function __construct(
         private readonly int $id,
@@ -45,6 +46,7 @@ class TelegramUpdate implements ArrayableInterface, SerializableInterface
         private readonly ?ChatMemberUpdate $botChatStatusChange = null,
         private readonly ?PreCheckoutQuery $preCheckoutQuery = null,
         private readonly ?ChatJoinRequest $chatJoinRequest = null,
+        private readonly ?Reaction $messageReaction = null,
     ) {
     }
 
@@ -120,6 +122,12 @@ class TelegramUpdate implements ArrayableInterface, SerializableInterface
             $chatJoinRequest = ChatJoinRequest::fromArray($data['chat_join_request']);
         }
 
+        // Handle message reaction
+        $messageReaction = null;
+        if (isset($data['message_reaction']) && is_array($data['message_reaction'])) {
+            $messageReaction = Reaction::fromArray($data['message_reaction']);
+        }
+
         return new self(
             id: $id,
             message: $message,
@@ -131,6 +139,7 @@ class TelegramUpdate implements ArrayableInterface, SerializableInterface
             botChatStatusChange: $botChatStatusChange,
             preCheckoutQuery: $preCheckoutQuery,
             chatJoinRequest: $chatJoinRequest,
+            messageReaction: $messageReaction,
         );
     }
 
@@ -325,6 +334,26 @@ class TelegramUpdate implements ArrayableInterface, SerializableInterface
     }
 
     /**
+     * Get the message reaction.
+     *
+     * @return Reaction|null
+     */
+    public function messageReaction(): ?Reaction
+    {
+        return $this->messageReaction;
+    }
+
+    /**
+     * Check if this update contains a message reaction.
+     *
+     * @return bool
+     */
+    public function hasMessageReaction(): bool
+    {
+        return $this->messageReaction !== null;
+    }
+
+    /**
      * Get the update type.
      *
      * @return string
@@ -358,6 +387,9 @@ class TelegramUpdate implements ArrayableInterface, SerializableInterface
         if ($this->chatJoinRequest !== null) {
             return 'chat_join_request';
         }
+        if ($this->messageReaction !== null) {
+            return 'message_reaction';
+        }
 
         return 'unknown';
     }
@@ -380,6 +412,7 @@ class TelegramUpdate implements ArrayableInterface, SerializableInterface
             'my_chat_member' => $this->botChatStatusChange?->toArray(),
             'pre_checkout_query' => $this->preCheckoutQuery?->toArray(),
             'chat_join_request' => $this->chatJoinRequest?->toArray(),
+            'message_reaction' => $this->messageReaction?->toArray(),
         ], fn ($value) => $value !== null);
     }
 }
