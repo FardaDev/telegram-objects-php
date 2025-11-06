@@ -16,19 +16,19 @@ namespace Telegram\Objects\Enums;
  * These constants represent the different actions that can be sent to show
  * the user that something is happening on the bot's side.
  */
-final class ChatActions
+enum ChatActions: string
 {
-    public const TYPING = 'typing';
-    public const UPLOAD_PHOTO = 'upload_photo';
-    public const RECORD_VIDEO = 'record_video';
-    public const UPLOAD_VIDEO = 'upload_video';
-    public const RECORD_VOICE = 'record_voice';
-    public const UPLOAD_VOICE = 'upload_voice';
-    public const UPLOAD_DOCUMENT = 'upload_document';
-    public const CHOOSE_STICKER = 'choose_sticker';
-    public const FIND_LOCATION = 'find_location';
-    public const RECORD_VIDEO_NOTE = 'record_video_note';
-    public const UPLOAD_VIDEO_NOTE = 'upload_video_note';
+    case TYPING = 'typing';
+    case UPLOAD_PHOTO = 'upload_photo';
+    case RECORD_VIDEO = 'record_video';
+    case UPLOAD_VIDEO = 'upload_video';
+    case RECORD_VOICE = 'record_voice';
+    case UPLOAD_VOICE = 'upload_voice';
+    case UPLOAD_DOCUMENT = 'upload_document';
+    case CHOOSE_STICKER = 'choose_sticker';
+    case FIND_LOCATION = 'find_location';
+    case RECORD_VIDEO_NOTE = 'record_video_note';
+    case UPLOAD_VIDEO_NOTE = 'upload_video_note';
 
     /**
      * Get all available chat actions
@@ -37,8 +37,6 @@ final class ChatActions
      */
     public static function getAvailableActions(): array
     {
-        $reflection = new \ReflectionClass(self::class);
-
-        return $reflection->getConstants();
+        return array_map(fn (self $case) => $case->value, self::cases());
     }
 }

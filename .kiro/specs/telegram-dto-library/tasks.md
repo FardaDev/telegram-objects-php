@@ -251,6 +251,7 @@ public static function fromArray(array $data): self
 - [x] 9.1 Implement constant enums
 
 
+
   - Extract ChatActions enum with all action constants
   - Extract ChatAdminPermissions and ChatPermissions enums
   - Extract Emojis enum for games and polls

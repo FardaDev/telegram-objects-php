@@ -16,17 +16,17 @@ namespace Telegram\Objects\Enums;
  * These constants represent the different permissions that can be granted
  * to chat administrators.
  */
-final class ChatAdminPermissions
+enum ChatAdminPermissions: string
 {
-    public const CAN_MANAGE_CHAT = 'can_manage_chat';
-    public const CAN_POST_MESSAGES = 'can_post_messages';
-    public const CAN_DELETE_MESSAGES = 'can_delete_messages';
-    public const CAN_MANAGE_VIDEO_CHATS = 'can_manage_video_chats';
-    public const CAN_RESTRICT_MEMBERS = 'can_restrict_members';
-    public const CAN_PROMOTE_MEMBERS = 'can_promote_members';
-    public const CAN_CHANGE_INFO = 'can_change_info';
-    public const CAN_INVITE_USERS = 'can_invite_users';
-    public const CAN_PIN_MESSAGES = 'can_pin_messages';
+    case CAN_MANAGE_CHAT = 'can_manage_chat';
+    case CAN_POST_MESSAGES = 'can_post_messages';
+    case CAN_DELETE_MESSAGES = 'can_delete_messages';
+    case CAN_MANAGE_VIDEO_CHATS = 'can_manage_video_chats';
+    case CAN_RESTRICT_MEMBERS = 'can_restrict_members';
+    case CAN_PROMOTE_MEMBERS = 'can_promote_members';
+    case CAN_CHANGE_INFO = 'can_change_info';
+    case CAN_INVITE_USERS = 'can_invite_users';
+    case CAN_PIN_MESSAGES = 'can_pin_messages';
 
     /**
      * Get all available admin permissions
@@ -35,8 +35,6 @@ final class ChatAdminPermissions
      */
     public static function getAvailablePermissions(): array
     {
-        $reflection = new \ReflectionClass(self::class);
-
-        return $reflection->getConstants();
+        return array_map(fn (self $case) => $case->value, self::cases());
     }
 }

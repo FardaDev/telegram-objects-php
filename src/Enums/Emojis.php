@@ -16,14 +16,14 @@ namespace Telegram\Objects\Enums;
  * These constants represent the different emojis that can be used
  * in Telegram games and interactive elements.
  */
-final class Emojis
+enum Emojis: string
 {
-    public const DICE = '🎲';
-    public const ARROW = '🎯';
-    public const BASKETBALL = '🏀';
-    public const FOOTBALL = '⚽';
-    public const BOWLING = '🎳';
-    public const SLOT_MACHINE = '🎰';
+    case DICE = '🎲';
+    case ARROW = '🎯';
+    case BASKETBALL = '🏀';
+    case FOOTBALL = '⚽';
+    case BOWLING = '🎳';
+    case SLOT_MACHINE = '🎰';
 
     /**
      * Get all available game emojis
@@ -32,8 +32,6 @@ final class Emojis
      */
     public static function getAvailableEmojis(): array
     {
-        $reflection = new \ReflectionClass(self::class);
-
-        return $reflection->getConstants();
+        return array_map(fn (self $case) => $case->value, self::cases());
     }
 }

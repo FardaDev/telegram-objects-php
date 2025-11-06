@@ -16,13 +16,13 @@ namespace Telegram\Objects\Enums;
  * These constants represent the different types of buttons that can be
  * used in reply keyboards.
  */
-final class ReplyButtonType
+enum ReplyButtonType: string
 {
-    public const TEXT = 'text';
-    public const REQUEST_CONTACT = 'request_contact';
-    public const REQUEST_LOCATION = 'request_location';
-    public const REQUEST_POLL = 'request_poll';
-    public const WEB_APP = 'web_app';
+    case TEXT = 'text';
+    case REQUEST_CONTACT = 'request_contact';
+    case REQUEST_LOCATION = 'request_location';
+    case REQUEST_POLL = 'request_poll';
+    case WEB_APP = 'web_app';
 
     /**
      * Get all available button types
@@ -31,8 +31,6 @@ final class ReplyButtonType
      */
     public static function getAvailableTypes(): array
     {
-        $reflection = new \ReflectionClass(self::class);
-
-        return $reflection->getConstants();
+        return array_map(fn (self $case) => $case->value, self::cases());
     }
 }
