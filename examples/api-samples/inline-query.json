@@ -1,0 +1,21 @@
+{
+  "update_id": 123456793,
+  "inline_query": {
+    "id": "1234567890123456789",
+    "from": {
+      "id": 987654321,
+      "is_bot": false,
+      "first_name": "John",
+      "last_name": "Doe",
+      "username": "johndoe",
+      "language_code": "en"
+    },
+    "query": "search term",
+    "offset": "",
+    "chat_type": "private",
+    "location": {
+      "longitude": -122.4194,
+      "latitude": 37.7749
+    }
+  }
+}

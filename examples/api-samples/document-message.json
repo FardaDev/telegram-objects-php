@@ -1,0 +1,37 @@
+{
+  "update_id": 123456794,
+  "message": {
+    "message_id": 1003,
+    "from": {
+      "id": 987654321,
+      "is_bot": false,
+      "first_name": "John",
+      "last_name": "Doe",
+      "username": "johndoe",
+      "language_code": "en"
+    },
+    "chat": {
+      "id": 987654321,
+      "first_name": "John",
+      "last_name": "Doe",
+      "username": "johndoe",
+      "type": "private"
+    },
+    "date": 1699123456,
+    "document": {
+      "file_name": "important-document.pdf",
+      "mime_type": "application/pdf",
+      "file_id": "BAADBAADrwADBREAAYag2eLVUcELAg",
+      "file_unique_id": "AgADrwADBREAAQ",
+      "file_size": 1048576,
+      "thumbnail": {
+        "file_id": "AAMCBAADGQEAAhphdTU2NzgxMjM0NTY3ODkw",
+        "file_unique_id": "AQADyBwAAqm5kExy",
+        "width": 320,
+        "height": 240,
+        "file_size": 12345
+      }
+    },
+    "caption": "Here's the document you requested 📄"
+  }
+}

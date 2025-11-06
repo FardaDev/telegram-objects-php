@@ -1,0 +1,81 @@
+{
+  "update_id": 123456792,
+  "message": {
+    "message_id": 2001,
+    "from": {
+      "id": 111222333,
+      "is_bot": false,
+      "first_name": "Alice",
+      "last_name": "Smith",
+      "username": "alice",
+      "language_code": "en"
+    },
+    "chat": {
+      "id": -1001234567890,
+      "title": "My Awesome Group",
+      "username": "myawesomegroup",
+      "type": "supergroup",
+      "description": "A group for awesome people",
+      "invite_link": "https://t.me/myawesomegroup",
+      "pinned_message": {
+        "message_id": 1500,
+        "from": {
+          "id": 444555666,
+          "is_bot": false,
+          "first_name": "Admin",
+          "username": "admin"
+        },
+        "chat": {
+          "id": -1001234567890,
+          "title": "My Awesome Group",
+          "username": "myawesomegroup",
+          "type": "supergroup"
+        },
+        "date": 1699000000,
+        "text": "Welcome to our group! Please read the rules.",
+        "pinned": true
+      },
+      "permissions": {
+        "can_send_messages": true,
+        "can_send_media_messages": true,
+        "can_send_polls": true,
+        "can_send_other_messages": true,
+        "can_add_web_page_previews": true,
+        "can_change_info": false,
+        "can_invite_users": true,
+        "can_pin_messages": false
+      }
+    },
+    "date": 1699123456,
+    "text": "@mybot help me with something please! 🤖",
+    "entities": [
+      {
+        "offset": 0,
+        "length": 6,
+        "type": "mention"
+      },
+      {
+        "offset": 37,
+        "length": 2,
+        "type": "emoji"
+      }
+    ],
+    "reply_to_message": {
+      "message_id": 2000,
+      "from": {
+        "id": 777888999,
+        "is_bot": false,
+        "first_name": "Bob",
+        "username": "bob"
+      },
+      "chat": {
+        "id": -1001234567890,
+        "title": "My Awesome Group",
+        "username": "myawesomegroup",
+        "type": "supergroup"
+      },
+      "date": 1699123400,
+      "text": "Does anyone know how to use this bot?"
+    }
+  }
+}

@@ -338,7 +338,10 @@ public static function fromArray(array $data): self
   - Add proper attribution to DefStudio/Telegraph project
   - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5_
 
-- [ ] 12.2 Create example implementations
+- [x] 12.2 Create example implementations
+
+
+
   - Create examples/basic-usage.php showing DTO creation and serialization
   - Create examples/webhook-parsing.php demonstrating TelegramUpdate parsing
   - Create examples/keyboard-examples.php showing keyboard construction

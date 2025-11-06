@@ -1,0 +1,70 @@
+{
+  "update_id": 123456790,
+  "message": {
+    "message_id": 1002,
+    "from": {
+      "id": 987654321,
+      "is_bot": false,
+      "first_name": "John",
+      "last_name": "Doe",
+      "username": "johndoe",
+      "language_code": "en"
+    },
+    "chat": {
+      "id": 987654321,
+      "first_name": "John",
+      "last_name": "Doe",
+      "username": "johndoe",
+      "type": "private"
+    },
+    "date": 1699123456,
+    "photo": [
+      {
+        "file_id": "AgACAgIAAxkBAAICGmF1234567890abcdef",
+        "file_unique_id": "AQADyBwAAqm5kExy",
+        "width": 90,
+        "height": 67,
+        "file_size": 1234
+      },
+      {
+        "file_id": "AgACAgIAAxkBAAICG2F1234567890abcdef",
+        "file_unique_id": "AQADyBwAAqm5kExz",
+        "width": 320,
+        "height": 240,
+        "file_size": 15432
+      },
+      {
+        "file_id": "AgACAgIAAxkBAAICHGF1234567890abcdef",
+        "file_unique_id": "AQADyBwAAqm5kEx0",
+        "width": 800,
+        "height": 600,
+        "file_size": 65432
+      },
+      {
+        "file_id": "AgACAgIAAxkBAAICHWF1234567890abcdef",
+        "file_unique_id": "AQADyBwAAqm5kEx1",
+        "width": 1280,
+        "height": 960,
+        "file_size": 125432
+      }
+    ],
+    "caption": "Check out this beautiful sunset! 🌅 #photography #nature",
+    "caption_entities": [
+      {
+        "offset": 32,
+        "length": 2,
+        "type": "emoji"
+      },
+      {
+        "offset": 35,
+        "length": 12,
+        "type": "hashtag"
+      },
+      {
+        "offset": 48,
+        "length": 7,
+        "type": "hashtag"
+      }
+    ]
+  }
+}
