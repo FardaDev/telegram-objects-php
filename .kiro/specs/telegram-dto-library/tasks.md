@@ -248,7 +248,9 @@ public static function fromArray(array $data): self
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
 
 - [ ] 9. Extract and implement enum classes
-- [ ] 9.1 Implement constant enums
+- [x] 9.1 Implement constant enums
+
+
   - Extract ChatActions enum with all action constants
   - Extract ChatAdminPermissions and ChatPermissions enums
   - Extract Emojis enum for games and polls
