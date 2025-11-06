@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2025 FardaDev - Mansour M
+Copyright (c) 2025 FardaDev
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,15 @@ SOFTWARE.
 
 ---
 
-This library is based on and inspired by the DefStudio/Telegraph project:
-https://github.com/defstudio/telegraph
+## Attribution
 
-Original Telegraph License:
-Copyright (c) defstudio <fabio.ivona@defstudio.it>
-Licensed under the MIT License
+This library contains code extracted and adapted from DefStudio/Telegraph:
+
+Original Project: https://github.com/defstudio/telegraph
+Original License: MIT License
+Original Copyright: (c) 2022 DefStudio
+
+The original Telegraph project is also licensed under the MIT License, which
+permits extraction, modification, and redistribution under the same license
+terms. All extracted files maintain attribution headers indicating their
+source and the specific Telegraph commit they were extracted from.
