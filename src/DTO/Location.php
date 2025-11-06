@@ -44,6 +44,7 @@ class Location implements ArrayableInterface, SerializableInterface
      *
      * @param array<string, mixed> $data The location data from Telegram API
      * @return self
+     * @throws \Telegram\Objects\Exceptions\ValidationException If required fields are missing or invalid
      */
     public static function fromArray(array $data): self
     {

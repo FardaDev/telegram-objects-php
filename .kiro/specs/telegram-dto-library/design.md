@@ -255,12 +255,46 @@ graph TD
 
 ### Data Validation Strategy
 
-Each DTO implements validation in the `fromArray()` method:
+**Consistent Validation Approach:**
+All DTO constructors validate input data using the centralized `Validator` class to ensure consistency across the entire library:
 
-1. **Required Field Validation**: Throw `ValidationException` for missing required fields
-2. **Type Coercion**: Convert string numbers to integers where appropriate
-3. **Nested Object Creation**: Recursively create child DTOs
-4. **Default Values**: Apply sensible defaults for optional fields
+- **Required Fields**: Use `Validator::requireField($data, 'field_name', 'ContextClass')` for all required fields
+- **Optional Fields**: Use `Validator::getValue($data, 'field_name', $default, 'expected_type')` for optional fields with defaults
+- **Type Validation**: Automatic type checking through Validator methods
+- **Enum Validation**: Use `Validator::validateEnum($value, 'field_name', $validValues)` for enum constraints
+- **Range Validation**: Use `Validator::validateRange($value, 'field_name', $min, $max)` for numeric ranges
+- **Custom Validation**: Use specialized Validator methods like `validateUrl()` for format validation
+
+**Validation Consistency Rules:**
+- **NEVER** use manual `isset()` checks or direct array access in `fromArray()` methods
+- **ALWAYS** use `Validator::requireField()` for required fields instead of manual ValidationException throws
+- **ALWAYS** use `Validator::getValue()` for optional fields instead of `$data['field'] ?? null`
+- **ALWAYS** import `use Telegram\Objects\Support\Validator;` in DTO classes
+- **MAINTAIN** consistent error message formatting through Validator class methods
+
+**Implementation Pattern:**
+```php
+public static function fromArray(array $data): self
+{
+    // Validate required fields
+    Validator::requireField($data, 'id', 'User');
+    Validator::requireField($data, 'first_name', 'User');
+    
+    // Extract values with type validation
+    $id = Validator::getValue($data, 'id', null, 'int');
+    $firstName = Validator::getValue($data, 'first_name', null, 'string');
+    $lastName = Validator::getValue($data, 'last_name', null, 'string');
+    $isBot = Validator::getValue($data, 'is_bot', false, 'bool');
+    
+    // Additional validation as needed
+    Validator::validateRange($id, 'id', 1);
+    
+    return new self($id, $isBot, $firstName, $lastName);
+}
+```
+
+**Nested Object Creation**: Recursively create child DTOs using the same validation approach
+**Error Propagation**: Allow validation errors from nested objects to bubble up with context
 
 ## Error Handling
 

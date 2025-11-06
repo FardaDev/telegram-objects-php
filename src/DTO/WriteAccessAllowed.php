@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /**
  * Extracted from: vendor_sources/telegraph/src/DTO/WriteAccessAllowed.php
@@ -10,12 +12,13 @@ namespace Telegram\Objects\DTO;
 
 use Telegram\Objects\Contracts\ArrayableInterface;
 use Telegram\Objects\Contracts\SerializableInterface;
+use Telegram\Objects\Support\Validator;
 
 /**
  * Represents a service message about a user allowing a bot to write messages.
- * 
- * This object represents a service message about a user allowing a bot 
- * to write messages after adding the bot to the attachment menu or launching 
+ *
+ * This object represents a service message about a user allowing a bot
+ * to write messages after adding the bot to the attachment menu or launching
  * a Web App from a link.
  */
 class WriteAccessAllowed implements ArrayableInterface, SerializableInterface
@@ -33,14 +36,15 @@ class WriteAccessAllowed implements ArrayableInterface, SerializableInterface
      *
      * @param array<string, mixed> $data The write access allowed data
      * @return self
+     * @throws \Telegram\Objects\Exceptions\ValidationException If validation fails
      */
     public static function fromArray(array $data): self
     {
         $writeAccessAllowed = new self();
 
-        $writeAccessAllowed->fromRequest = $data['from_request'] ?? false;
-        $writeAccessAllowed->webAppName = $data['web_app_name'] ?? null;
-        $writeAccessAllowed->fromAttachmentMenu = $data['from_attachment_menu'] ?? false;
+        $writeAccessAllowed->fromRequest = Validator::getValue($data, 'from_request', false, 'bool');
+        $writeAccessAllowed->webAppName = Validator::getValue($data, 'web_app_name', null, 'string');
+        $writeAccessAllowed->fromAttachmentMenu = Validator::getValue($data, 'from_attachment_menu', false, 'bool');
 
         return $writeAccessAllowed;
     }
@@ -93,15 +97,15 @@ class WriteAccessAllowed implements ArrayableInterface, SerializableInterface
         if ($this->fromRequest()) {
             return 'request';
         }
-        
+
         if ($this->fromWebApp()) {
             return 'web_app';
         }
-        
+
         if ($this->fromAttachmentMenu()) {
             return 'attachment_menu';
         }
-        
+
         return 'unknown';
     }
 
@@ -113,16 +117,17 @@ class WriteAccessAllowed implements ArrayableInterface, SerializableInterface
         if ($this->fromRequest()) {
             return 'User granted write access via request';
         }
-        
+
         if ($this->fromWebApp()) {
             $appName = $this->webAppName ?? 'Unknown App';
+
             return "User granted write access via Web App: {$appName}";
         }
-        
+
         if ($this->fromAttachmentMenu()) {
             return 'User granted write access via attachment menu';
         }
-        
+
         return 'User granted write access via unknown method';
     }
 

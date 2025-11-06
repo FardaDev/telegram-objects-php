@@ -12,8 +12,8 @@ namespace Telegram\Objects\DTO;
 
 use Telegram\Objects\Contracts\ArrayableInterface;
 use Telegram\Objects\Contracts\SerializableInterface;
-use Telegram\Objects\Exceptions\ValidationException;
 use Telegram\Objects\Support\TelegramDateTime;
+use Telegram\Objects\Support\Validator;
 
 /**
  * Represents a join request sent to a chat.
@@ -39,39 +39,32 @@ class ChatJoinRequest implements ArrayableInterface, SerializableInterface
      *
      * @param array<string, mixed> $data The chat join request data
      * @return self
-     * @throws ValidationException If required fields are missing or invalid
+     * @throws \Telegram\Objects\Exceptions\ValidationException If required fields are missing or invalid
      */
     public static function fromArray(array $data): self
     {
-        if (! isset($data['user_chat_id'])) {
-            throw new ValidationException("Missing required field 'user_chat_id'");
-        }
-
-        if (! isset($data['date'])) {
-            throw new ValidationException("Missing required field 'date'");
-        }
-
-        if (! isset($data['chat']) || ! is_array($data['chat'])) {
-            throw new ValidationException("Missing or invalid required field 'chat'");
-        }
-
-        if (! isset($data['from']) || ! is_array($data['from'])) {
-            throw new ValidationException("Missing or invalid required field 'from'");
-        }
-
         $request = new self();
 
-        $request->userChatId = $data['user_chat_id'];
-        $request->date = TelegramDateTime::fromTimestamp($data['date']);
-        $request->chat = Chat::fromArray($data['chat']);
-        $request->from = User::fromArray($data['from']);
+        Validator::requireField($data, 'user_chat_id', 'ChatJoinRequest');
+        Validator::requireField($data, 'date', 'ChatJoinRequest');
+        Validator::requireField($data, 'chat', 'ChatJoinRequest');
+        Validator::requireField($data, 'from', 'ChatJoinRequest');
 
-        if (isset($data['bio'])) {
-            $request->bio = $data['bio'];
-        }
+        $userChatId = Validator::getValue($data, 'user_chat_id', null, 'int');
+        $date = Validator::getValue($data, 'date', null, 'int');
+        $chatData = Validator::getValue($data, 'chat', null, 'array');
+        $fromData = Validator::getValue($data, 'from', null, 'array');
 
-        if (isset($data['invite_link']) && is_array($data['invite_link'])) {
-            $request->inviteLink = ChatInviteLink::fromArray($data['invite_link']);
+        $request->userChatId = $userChatId;
+        $request->date = TelegramDateTime::fromTimestamp($date);
+        $request->chat = Chat::fromArray($chatData);
+        $request->from = User::fromArray($fromData);
+
+        $request->bio = Validator::getValue($data, 'bio', null, 'string');
+
+        $inviteLinkData = Validator::getValue($data, 'invite_link', null, 'array');
+        if ($inviteLinkData !== null) {
+            $request->inviteLink = ChatInviteLink::fromArray($inviteLinkData);
         }
 
         return $request;

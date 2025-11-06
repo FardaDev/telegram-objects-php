@@ -27,6 +27,39 @@ Test files that are based on or inspired by Telegraph tests should also include 
  */
 ```
 
+**CRITICAL VALIDATION CONSISTENCY REQUIREMENTS:**
+All DTO fromArray() methods MUST use consistent validation approach:
+- **ALWAYS** use `Validator::requireField($data, 'field_name', 'ContextClass')` for required fields (never manual isset() checks)
+- **ALWAYS** use `Validator::getValue($data, 'field_name', $default, 'expected_type')` for optional fields with defaults
+- **ALWAYS** use `Validator::validateEnum($value, $validValues, 'field_name')` for enum validation (note parameter order)
+- **ALWAYS** import `use Telegram\Objects\Support\Validator;` in DTO classes
+- **ALWAYS** include `@throws \Telegram\Objects\Exceptions\ValidationException` PHPDoc annotation for all fromArray() methods
+- **NEVER** use manual ValidationException throws for basic field validation
+- **NEVER** use manual `isset()` checks or direct array access like `$data['field'] ?? null`
+- **MAINTAIN** consistent error handling through Validator class methods
+
+**Example Correct Pattern:**
+```php
+/**
+ * @param array<string, mixed> $data The data from Telegram API
+ * @return self
+ * @throws \Telegram\Objects\Exceptions\ValidationException If required fields are missing or invalid
+ */
+public static function fromArray(array $data): self
+{
+    // Validate required fields
+    Validator::requireField($data, 'id', 'User');
+    Validator::requireField($data, 'first_name', 'User');
+    
+    // Extract values with type validation
+    $id = Validator::getValue($data, 'id', null, 'int');
+    $firstName = Validator::getValue($data, 'first_name', null, 'string');
+    $lastName = Validator::getValue($data, 'last_name', null, 'string');
+    
+    return new self($id, $firstName, $lastName);
+}
+```
+
 
 
 

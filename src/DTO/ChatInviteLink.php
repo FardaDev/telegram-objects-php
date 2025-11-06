@@ -12,8 +12,8 @@ namespace Telegram\Objects\DTO;
 
 use Telegram\Objects\Contracts\ArrayableInterface;
 use Telegram\Objects\Contracts\SerializableInterface;
-use Telegram\Objects\Exceptions\ValidationException;
 use Telegram\Objects\Support\TelegramDateTime;
+use Telegram\Objects\Support\Validator;
 
 /**
  * Represents a chat invite link.
@@ -44,61 +44,41 @@ class ChatInviteLink implements ArrayableInterface, SerializableInterface
      *
      * @param array<string, mixed> $data The chat invite link data
      * @return self
-     * @throws ValidationException If required fields are missing or invalid
+     * @throws \Telegram\Objects\Exceptions\ValidationException If required fields are missing or invalid
      */
     public static function fromArray(array $data): self
     {
-        if (! isset($data['invite_link'])) {
-            throw new ValidationException("Missing required field 'invite_link'");
-        }
-
-        if (! isset($data['creator']) || ! is_array($data['creator'])) {
-            throw new ValidationException("Missing or invalid required field 'creator'");
-        }
-
-        if (! isset($data['creates_join_request'])) {
-            throw new ValidationException("Missing required field 'creates_join_request'");
-        }
-
-        if (! isset($data['is_primary'])) {
-            throw new ValidationException("Missing required field 'is_primary'");
-        }
-
-        if (! isset($data['is_revoked'])) {
-            throw new ValidationException("Missing required field 'is_revoked'");
-        }
-
         $invite = new self();
 
-        $invite->inviteLink = $data['invite_link'];
-        $invite->creator = User::fromArray($data['creator']);
-        $invite->createsJoinRequest = $data['creates_join_request'];
-        $invite->isPrimary = $data['is_primary'];
-        $invite->isRevoked = $data['is_revoked'];
+        Validator::requireField($data, 'invite_link', 'ChatInviteLink');
+        Validator::requireField($data, 'creator', 'ChatInviteLink');
+        Validator::requireField($data, 'creates_join_request', 'ChatInviteLink');
+        Validator::requireField($data, 'is_primary', 'ChatInviteLink');
+        Validator::requireField($data, 'is_revoked', 'ChatInviteLink');
 
-        if (isset($data['name'])) {
-            $invite->name = $data['name'];
+        $inviteLink = Validator::getValue($data, 'invite_link', null, 'string');
+        $creatorData = Validator::getValue($data, 'creator', null, 'array');
+        $createsJoinRequest = Validator::getValue($data, 'creates_join_request', null, 'bool');
+        $isPrimary = Validator::getValue($data, 'is_primary', null, 'bool');
+        $isRevoked = Validator::getValue($data, 'is_revoked', null, 'bool');
+
+        $invite->inviteLink = $inviteLink;
+        $invite->creator = User::fromArray($creatorData);
+        $invite->createsJoinRequest = $createsJoinRequest;
+        $invite->isPrimary = $isPrimary;
+        $invite->isRevoked = $isRevoked;
+
+        $invite->name = Validator::getValue($data, 'name', null, 'string');
+
+        $expireDate = Validator::getValue($data, 'expire_date', null, 'int');
+        if ($expireDate !== null) {
+            $invite->expireDate = TelegramDateTime::fromTimestamp($expireDate);
         }
 
-        if (isset($data['expire_date'])) {
-            $invite->expireDate = TelegramDateTime::fromTimestamp($data['expire_date']);
-        }
-
-        if (isset($data['member_limit'])) {
-            $invite->memberLimit = $data['member_limit'];
-        }
-
-        if (isset($data['pending_join_requests_count'])) {
-            $invite->pendingJoinRequestsCount = $data['pending_join_requests_count'];
-        }
-
-        if (isset($data['subscription_period'])) {
-            $invite->subscriptionPeriod = $data['subscription_period'];
-        }
-
-        if (isset($data['subscription_price'])) {
-            $invite->subscriptionPrice = $data['subscription_price'];
-        }
+        $invite->memberLimit = Validator::getValue($data, 'member_limit', null, 'int');
+        $invite->pendingJoinRequestsCount = Validator::getValue($data, 'pending_join_requests_count', null, 'int');
+        $invite->subscriptionPeriod = Validator::getValue($data, 'subscription_period', null, 'int');
+        $invite->subscriptionPrice = Validator::getValue($data, 'subscription_price', null, 'int');
 
         return $invite;
     }

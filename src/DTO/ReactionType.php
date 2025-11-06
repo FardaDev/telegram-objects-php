@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /**
  * Extracted from: vendor_sources/telegraph/src/DTO/ReactionType.php
@@ -10,11 +12,11 @@ namespace Telegram\Objects\DTO;
 
 use Telegram\Objects\Contracts\ArrayableInterface;
 use Telegram\Objects\Contracts\SerializableInterface;
-use Telegram\Objects\Exceptions\ValidationException;
+use Telegram\Objects\Support\Validator;
 
 /**
  * Represents a reaction type.
- * 
+ *
  * This class describes the type of a reaction to a message.
  * Currently, it can be one of: emoji, custom_emoji, paid.
  */
@@ -38,24 +40,25 @@ class ReactionType implements ArrayableInterface, SerializableInterface
      *
      * @param array<string, mixed> $data The reaction type data
      * @return self
-     * @throws ValidationException If required fields are missing or invalid
+     * @throws \Telegram\Objects\Exceptions\ValidationException If required fields are missing or invalid
      */
     public static function fromArray(array $data): self
     {
-        if (!isset($data['type'])) {
-            throw new ValidationException("Missing required field 'type'");
-        }
+        Validator::requireField($data, 'type', 'ReactionType');
 
+        $type = Validator::getValue($data, 'type', null, 'string');
+        $emoji = Validator::getValue($data, 'emoji', null, 'string');
+        $customEmojiId = Validator::getValue($data, 'custom_emoji_id', null, 'string');
+
+        // Validate reaction type
         $validTypes = [self::TYPE_EMOJI, self::TYPE_CUSTOM_EMOJI, self::TYPE_PAID_EMOJI];
-        if (!in_array($data['type'], $validTypes)) {
-            throw new ValidationException("Invalid reaction type: {$data['type']}. Must be one of: " . implode(', ', $validTypes));
-        }
+        Validator::validateEnum($type, $validTypes, 'type');
 
         $reaction = new self();
 
-        $reaction->type = $data['type'];
-        $reaction->emoji = $data['emoji'] ?? null;
-        $reaction->customEmojiId = $data['custom_emoji_id'] ?? null;
+        $reaction->type = $type;
+        $reaction->emoji = $emoji;
+        $reaction->customEmojiId = $customEmojiId;
 
         return $reaction;
     }

@@ -49,6 +49,7 @@ class Audio implements ArrayableInterface, SerializableInterface, DownloadableIn
      *
      * @param array<string, mixed> $data The audio data from Telegram API
      * @return self
+     * @throws \Telegram\Objects\Exceptions\ValidationException If required fields are missing or invalid
      */
     public static function fromArray(array $data): self
     {

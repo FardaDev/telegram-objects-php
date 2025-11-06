@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /**
  * Extracted from: vendor_sources/telegraph/src/DTO/Reaction.php
@@ -10,14 +12,14 @@ namespace Telegram\Objects\DTO;
 
 use Telegram\Objects\Contracts\ArrayableInterface;
 use Telegram\Objects\Contracts\SerializableInterface;
-use Telegram\Objects\Exceptions\ValidationException;
 use Telegram\Objects\Support\Collection;
 use Telegram\Objects\Support\TelegramDateTime;
+use Telegram\Objects\Support\Validator;
 
 /**
  * Represents a change in the list of the chosen reactions for a message.
- * 
- * This object represents a change in the list of the chosen reactions 
+ *
+ * This object represents a change in the list of the chosen reactions
  * for a message. For example, when a user adds or removes a reaction.
  */
 class Reaction implements ArrayableInterface, SerializableInterface
@@ -46,34 +48,32 @@ class Reaction implements ArrayableInterface, SerializableInterface
      *
      * @param array<string, mixed> $data The reaction data
      * @return self
-     * @throws ValidationException If required fields are missing or invalid
+     * @throws \Telegram\Objects\Exceptions\ValidationException If required fields are missing or invalid
      */
     public static function fromArray(array $data): self
     {
-        if (!isset($data['message_id'])) {
-            throw new ValidationException("Missing required field 'message_id'");
-        }
+        Validator::requireField($data, 'message_id', 'Reaction');
+        Validator::requireField($data, 'chat', 'Reaction');
+        Validator::requireField($data, 'date', 'Reaction');
 
-        if (!isset($data['chat']) || !is_array($data['chat'])) {
-            throw new ValidationException("Missing or invalid required field 'chat'");
-        }
-
-        if (!isset($data['date'])) {
-            throw new ValidationException("Missing required field 'date'");
-        }
+        $messageId = Validator::getValue($data, 'message_id', null, 'int');
+        $chatData = Validator::getValue($data, 'chat', null, 'array');
+        $date = Validator::getValue($data, 'date', null, 'int');
+        $actorChatData = Validator::getValue($data, 'actor_chat', null, 'array');
+        $userData = Validator::getValue($data, 'user', null, 'array');
 
         $reaction = new self();
 
-        $reaction->messageId = $data['message_id'];
-        $reaction->chat = Chat::fromArray($data['chat']);
-        $reaction->date = TelegramDateTime::fromTimestamp($data['date']);
+        $reaction->messageId = $messageId;
+        $reaction->chat = Chat::fromArray($chatData);
+        $reaction->date = TelegramDateTime::fromTimestamp($date);
 
-        if (isset($data['actor_chat']) && is_array($data['actor_chat'])) {
-            $reaction->actorChat = Chat::fromArray($data['actor_chat']);
+        if ($actorChatData !== null) {
+            $reaction->actorChat = Chat::fromArray($actorChatData);
         }
 
-        if (isset($data['user']) && is_array($data['user'])) {
-            $reaction->from = User::fromArray($data['user']);
+        if ($userData !== null) {
+            $reaction->from = User::fromArray($userData);
         }
 
         // Process old reactions
@@ -190,7 +190,7 @@ class Reaction implements ArrayableInterface, SerializableInterface
      */
     public function hasChangedReactions(): bool
     {
-        return $this->newReaction->count() === $this->oldReaction->count() && 
+        return $this->newReaction->count() === $this->oldReaction->count() &&
                $this->newReaction->count() > 0;
     }
 
@@ -217,21 +217,23 @@ class Reaction implements ArrayableInterface, SerializableInterface
     {
         $oldCount = $this->oldReaction->count();
         $newCount = $this->newReaction->count();
-        
+
         if ($newCount > $oldCount) {
             $added = $newCount - $oldCount;
+
             return "Added {$added} reaction(s)";
         }
-        
+
         if ($newCount < $oldCount) {
             $removed = $oldCount - $newCount;
+
             return "Removed {$removed} reaction(s)";
         }
-        
+
         if ($newCount > 0) {
             return "Changed {$newCount} reaction(s)";
         }
-        
+
         return "No reactions";
     }
 

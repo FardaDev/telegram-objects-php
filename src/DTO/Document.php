@@ -43,6 +43,7 @@ class Document implements ArrayableInterface, SerializableInterface, Downloadabl
      *
      * @param array<string, mixed> $data The document data from Telegram API
      * @return self
+     * @throws \Telegram\Objects\Exceptions\ValidationException If required fields are missing or invalid
      */
     public static function fromArray(array $data): self
     {

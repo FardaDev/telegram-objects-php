@@ -12,8 +12,8 @@ namespace Telegram\Objects\DTO;
 
 use Telegram\Objects\Contracts\ArrayableInterface;
 use Telegram\Objects\Contracts\SerializableInterface;
-use Telegram\Objects\Exceptions\ValidationException;
 use Telegram\Objects\Support\TelegramDateTime;
+use Telegram\Objects\Support\Validator;
 
 /**
  * Represents a change in a chat member's status.
@@ -41,44 +41,37 @@ class ChatMemberUpdate implements ArrayableInterface, SerializableInterface
      *
      * @param array<string, mixed> $data The chat member update data
      * @return self
-     * @throws ValidationException If required fields are missing or invalid
+     * @throws \Telegram\Objects\Exceptions\ValidationException If required fields are missing or invalid
      */
     public static function fromArray(array $data): self
     {
-        if (! isset($data['date'])) {
-            throw new ValidationException("Missing required field 'date'");
-        }
-
-        if (! isset($data['chat']) || ! is_array($data['chat'])) {
-            throw new ValidationException("Missing or invalid required field 'chat'");
-        }
-
-        if (! isset($data['from']) || ! is_array($data['from'])) {
-            throw new ValidationException("Missing or invalid required field 'from'");
-        }
-
-        if (! isset($data['old_chat_member']) || ! is_array($data['old_chat_member'])) {
-            throw new ValidationException("Missing or invalid required field 'old_chat_member'");
-        }
-
-        if (! isset($data['new_chat_member']) || ! is_array($data['new_chat_member'])) {
-            throw new ValidationException("Missing or invalid required field 'new_chat_member'");
-        }
-
         $chatMemberUpdate = new self();
 
-        $chatMemberUpdate->date = TelegramDateTime::fromTimestamp($data['date']);
-        $chatMemberUpdate->chat = Chat::fromArray($data['chat']);
-        $chatMemberUpdate->from = User::fromArray($data['from']);
-        $chatMemberUpdate->previous = ChatMember::fromArray($data['old_chat_member']);
-        $chatMemberUpdate->new = ChatMember::fromArray($data['new_chat_member']);
+        Validator::requireField($data, 'date', 'ChatMemberUpdate');
+        Validator::requireField($data, 'chat', 'ChatMemberUpdate');
+        Validator::requireField($data, 'from', 'ChatMemberUpdate');
+        Validator::requireField($data, 'old_chat_member', 'ChatMemberUpdate');
+        Validator::requireField($data, 'new_chat_member', 'ChatMemberUpdate');
 
-        if (isset($data['invite_link']) && is_array($data['invite_link'])) {
-            $chatMemberUpdate->inviteLink = ChatInviteLink::fromArray($data['invite_link']);
+        $date = Validator::getValue($data, 'date', null, 'int');
+        $chatData = Validator::getValue($data, 'chat', null, 'array');
+        $fromData = Validator::getValue($data, 'from', null, 'array');
+        $oldChatMemberData = Validator::getValue($data, 'old_chat_member', null, 'array');
+        $newChatMemberData = Validator::getValue($data, 'new_chat_member', null, 'array');
+
+        $chatMemberUpdate->date = TelegramDateTime::fromTimestamp($date);
+        $chatMemberUpdate->chat = Chat::fromArray($chatData);
+        $chatMemberUpdate->from = User::fromArray($fromData);
+        $chatMemberUpdate->previous = ChatMember::fromArray($oldChatMemberData);
+        $chatMemberUpdate->new = ChatMember::fromArray($newChatMemberData);
+
+        $inviteLinkData = Validator::getValue($data, 'invite_link', null, 'array');
+        if ($inviteLinkData !== null) {
+            $chatMemberUpdate->inviteLink = ChatInviteLink::fromArray($inviteLinkData);
         }
 
-        $chatMemberUpdate->viaJoinRequest = $data['via_join_request'] ?? null;
-        $chatMemberUpdate->viaChatFolderInviteLink = $data['via_chat_folder_invite_link'] ?? null;
+        $chatMemberUpdate->viaJoinRequest = Validator::getValue($data, 'via_join_request', null, 'bool');
+        $chatMemberUpdate->viaChatFolderInviteLink = Validator::getValue($data, 'via_chat_folder_invite_link', null, 'bool');
 
         return $chatMemberUpdate;
     }

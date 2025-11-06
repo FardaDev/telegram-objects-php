@@ -12,7 +12,7 @@ namespace Telegram\Objects\DTO;
 
 use Telegram\Objects\Contracts\ArrayableInterface;
 use Telegram\Objects\Contracts\SerializableInterface;
-use Telegram\Objects\Exceptions\ValidationException;
+use Telegram\Objects\Support\Validator;
 
 /**
  * Represents a chat member with their status and permissions.
@@ -78,27 +78,28 @@ class ChatMember implements ArrayableInterface, SerializableInterface
      *
      * @param array<string, mixed> $data The chat member data
      * @return self
-     * @throws ValidationException If required fields are missing or invalid
+     * @throws \Telegram\Objects\Exceptions\ValidationException If required fields are missing or invalid
      */
     public static function fromArray(array $data): self
     {
-        if (! isset($data['status'])) {
-            throw new ValidationException("Missing required field 'status'");
-        }
+        Validator::requireField($data, 'status', 'ChatMember');
+        Validator::requireField($data, 'user', 'ChatMember');
 
-        if (! isset($data['user']) || ! is_array($data['user'])) {
-            throw new ValidationException("Missing or invalid required field 'user'");
-        }
+        $status = Validator::getValue($data, 'status', null, 'string');
+        $userData = Validator::getValue($data, 'user', null, 'array');
+        $isAnonymous = Validator::getValue($data, 'is_anonymous', false, 'bool');
+        $isMember = Validator::getValue($data, 'is_member', false, 'bool');
+        $customTitle = Validator::getValue($data, 'custom_title', null, 'string');
+        $untilDate = Validator::getValue($data, 'until_date', null, 'int');
 
         $member = new self();
 
-        $member->status = $data['status'];
-        $member->user = User::fromArray($data['user']);
-
-        $member->isAnonymous = $data['is_anonymous'] ?? false;
-        $member->isMember = $data['is_member'] ?? false;
-        $member->customTitle = $data['custom_title'] ?? null;
-        $member->untilDate = $data['until_date'] ?? null;
+        $member->status = $status;
+        $member->user = User::fromArray($userData);
+        $member->isAnonymous = $isAnonymous;
+        $member->isMember = $isMember;
+        $member->customTitle = $customTitle;
+        $member->untilDate = $untilDate;
 
         // Set permissions from data
         $member->setPermissionsFromArray($data);
@@ -113,34 +114,34 @@ class ChatMember implements ArrayableInterface, SerializableInterface
      */
     private function setPermissionsFromArray(array $data): void
     {
-        $this->canBeEdited = $data['can_be_edited'] ?? false;
-        $this->canChangeInfo = $data['can_change_info'] ?? false;
-        $this->canInviteUsers = $data['can_invite_users'] ?? false;
-        $this->canManageChat = $data['can_manage_chat'] ?? false;
-        $this->canManageTopics = $data['can_manage_topics'] ?? false;
-        $this->canManageVideoChats = $data['can_manage_video_chats'] ?? false;
-        $this->canManageVoiceChats = $data['can_manage_voice_chats'] ?? false;
-        $this->canManageDirectMessages = $data['can_manage_direct_messages'] ?? false;
-        $this->canRestrictMembers = $data['can_restrict_members'] ?? false;
-        $this->canPromoteMembers = $data['can_promote_members'] ?? false;
-        $this->canPostMessages = $data['can_post_messages'] ?? false;
-        $this->canEditMessages = $data['can_edit_messages'] ?? false;
-        $this->canDeleteMessages = $data['can_delete_messages'] ?? false;
-        $this->canPinMessages = $data['can_pin_messages'] ?? false;
-        $this->canPostStories = $data['can_post_stories'] ?? false;
-        $this->canEditStories = $data['can_edit_stories'] ?? false;
-        $this->canDeleteStories = $data['can_delete_stories'] ?? false;
-        $this->canSendMessages = $data['can_send_messages'] ?? false;
-        $this->canSendMediaMessages = $data['can_send_media_messages'] ?? false;
-        $this->canSendAudios = $data['can_send_audios'] ?? false;
-        $this->canSendDocuments = $data['can_send_documents'] ?? false;
-        $this->canSendPhotos = $data['can_send_photos'] ?? false;
-        $this->canSendVideos = $data['can_send_videos'] ?? false;
-        $this->canSendVideoNotes = $data['can_send_video_notes'] ?? false;
-        $this->canSendVoiceNotes = $data['can_send_voice_notes'] ?? false;
-        $this->canSendPolls = $data['can_send_polls'] ?? false;
-        $this->canSendOtherMessages = $data['can_send_other_messages'] ?? false;
-        $this->canAddWebPagePreviews = $data['can_add_web_page_previews'] ?? false;
+        $this->canBeEdited = Validator::getValue($data, 'can_be_edited', false, 'bool');
+        $this->canChangeInfo = Validator::getValue($data, 'can_change_info', false, 'bool');
+        $this->canInviteUsers = Validator::getValue($data, 'can_invite_users', false, 'bool');
+        $this->canManageChat = Validator::getValue($data, 'can_manage_chat', false, 'bool');
+        $this->canManageTopics = Validator::getValue($data, 'can_manage_topics', false, 'bool');
+        $this->canManageVideoChats = Validator::getValue($data, 'can_manage_video_chats', false, 'bool');
+        $this->canManageVoiceChats = Validator::getValue($data, 'can_manage_voice_chats', false, 'bool');
+        $this->canManageDirectMessages = Validator::getValue($data, 'can_manage_direct_messages', false, 'bool');
+        $this->canRestrictMembers = Validator::getValue($data, 'can_restrict_members', false, 'bool');
+        $this->canPromoteMembers = Validator::getValue($data, 'can_promote_members', false, 'bool');
+        $this->canPostMessages = Validator::getValue($data, 'can_post_messages', false, 'bool');
+        $this->canEditMessages = Validator::getValue($data, 'can_edit_messages', false, 'bool');
+        $this->canDeleteMessages = Validator::getValue($data, 'can_delete_messages', false, 'bool');
+        $this->canPinMessages = Validator::getValue($data, 'can_pin_messages', false, 'bool');
+        $this->canPostStories = Validator::getValue($data, 'can_post_stories', false, 'bool');
+        $this->canEditStories = Validator::getValue($data, 'can_edit_stories', false, 'bool');
+        $this->canDeleteStories = Validator::getValue($data, 'can_delete_stories', false, 'bool');
+        $this->canSendMessages = Validator::getValue($data, 'can_send_messages', false, 'bool');
+        $this->canSendMediaMessages = Validator::getValue($data, 'can_send_media_messages', false, 'bool');
+        $this->canSendAudios = Validator::getValue($data, 'can_send_audios', false, 'bool');
+        $this->canSendDocuments = Validator::getValue($data, 'can_send_documents', false, 'bool');
+        $this->canSendPhotos = Validator::getValue($data, 'can_send_photos', false, 'bool');
+        $this->canSendVideos = Validator::getValue($data, 'can_send_videos', false, 'bool');
+        $this->canSendVideoNotes = Validator::getValue($data, 'can_send_video_notes', false, 'bool');
+        $this->canSendVoiceNotes = Validator::getValue($data, 'can_send_voice_notes', false, 'bool');
+        $this->canSendPolls = Validator::getValue($data, 'can_send_polls', false, 'bool');
+        $this->canSendOtherMessages = Validator::getValue($data, 'can_send_other_messages', false, 'bool');
+        $this->canAddWebPagePreviews = Validator::getValue($data, 'can_add_web_page_previews', false, 'bool');
     }
 
     /**
