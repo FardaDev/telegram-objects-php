@@ -1,10 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Telegram\Objects\Exceptions;
 
 /**
  * Exception thrown when input data validation fails.
- * 
+ *
  * Used specifically for DTO creation and data validation scenarios.
  */
 class ValidationException extends TelegramException
@@ -19,7 +21,7 @@ class ValidationException extends TelegramException
     public static function invalidArrayData(string $message, string $field = ''): static
     {
         $fullMessage = $field ? "Validation failed for field '{$field}': {$message}" : "Validation failed: {$message}";
-        
+
         return new static($fullMessage);
     }
 
@@ -34,7 +36,7 @@ class ValidationException extends TelegramException
     public static function invalidType(string $field, string $expectedType, mixed $actualValue): static
     {
         $actualType = get_debug_type($actualValue);
-        
+
         return new static("Field '{$field}' must be of type {$expectedType}, {$actualType} given");
     }
 
@@ -57,7 +59,7 @@ class ValidationException extends TelegramException
         } elseif ($max !== null) {
             $range = " (maximum: {$max})";
         }
-        
+
         return new static("Field '{$field}' value {$value} is out of allowed range{$range}");
     }
 
@@ -80,7 +82,7 @@ class ValidationException extends TelegramException
         } elseif ($maxLength !== null) {
             $constraint = " (maximum length: {$maxLength} characters)";
         }
-        
+
         return new static("Field '{$field}' has invalid length of {$actualLength} characters{$constraint}");
     }
 }

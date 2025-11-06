@@ -1,10 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Telegram\Objects\Exceptions;
 
 /**
  * Exception thrown during object serialization and deserialization.
- * 
+ *
  * Handles errors that occur when converting between arrays and DTOs.
  */
 class SerializationException extends TelegramException
@@ -30,7 +32,7 @@ class SerializationException extends TelegramException
     public static function unsupportedType(mixed $value, string $context): static
     {
         $type = get_debug_type($value);
-        
+
         return new static("Unsupported type '{$type}' encountered during serialization in {$context}");
     }
 

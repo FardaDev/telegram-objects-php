@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Telegram\Objects\Support;
 
@@ -6,7 +8,7 @@ use Telegram\Objects\Exceptions\ValidationException;
 
 /**
  * Utility class for input validation in DTO creation.
- * 
+ *
  * Provides common validation methods for Telegram API data.
  */
 class Validator
@@ -21,7 +23,7 @@ class Validator
      */
     public static function requireField(array $data, string $field, string $context): void
     {
-        if (!array_key_exists($field, $data)) {
+        if (! array_key_exists($field, $data)) {
             throw ValidationException::invalidArrayData("Missing required field '{$field}'", $context);
         }
     }
@@ -37,8 +39,8 @@ class Validator
     public static function validateType(mixed $value, string $expectedType, string $field): void
     {
         $actualType = get_debug_type($value);
-        
-        if (!self::isTypeMatch($value, $expectedType)) {
+
+        if (! self::isTypeMatch($value, $expectedType)) {
             throw ValidationException::invalidType($field, $expectedType, $value);
         }
     }
@@ -55,11 +57,11 @@ class Validator
     public static function validateStringLength(string $value, string $field, ?int $minLength = null, ?int $maxLength = null): void
     {
         $length = mb_strlen($value, 'UTF-8');
-        
+
         if ($minLength !== null && $length < $minLength) {
             throw ValidationException::invalidStringLength($field, $length, $minLength, $maxLength);
         }
-        
+
         if ($maxLength !== null && $length > $maxLength) {
             throw ValidationException::invalidStringLength($field, $length, $minLength, $maxLength);
         }
@@ -79,7 +81,7 @@ class Validator
         if ($min !== null && $value < $min) {
             throw ValidationException::valueOutOfRange($field, $value, $min, $max);
         }
-        
+
         if ($max !== null && $value > $max) {
             throw ValidationException::valueOutOfRange($field, $value, $min, $max);
         }
@@ -95,8 +97,9 @@ class Validator
      */
     public static function validateEnum(string $value, array $allowedValues, string $field): void
     {
-        if (!in_array($value, $allowedValues, true)) {
+        if (! in_array($value, $allowedValues, true)) {
             $allowed = implode(', ', $allowedValues);
+
             throw ValidationException::invalidArrayData("Invalid value '{$value}' for {$field}. Allowed values: {$allowed}", $field);
         }
     }
@@ -110,7 +113,7 @@ class Validator
      */
     public static function validateUrl(string $url, string $field): void
     {
-        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+        if (! filter_var($url, FILTER_VALIDATE_URL)) {
             throw ValidationException::invalidArrayData("Invalid URL format", $field);
         }
     }
@@ -128,11 +131,11 @@ class Validator
     public static function getValue(array $data, string $key, mixed $default = null, ?string $expectedType = null): mixed
     {
         $value = $data[$key] ?? $default;
-        
+
         if ($expectedType !== null && $value !== null && $value !== $default) {
             self::validateType($value, $expectedType, $key);
         }
-        
+
         return $value;
     }
 

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /**
  * Extracted from: vendor_sources/telegraph/src/Contracts/Downloadable.php
@@ -10,7 +12,7 @@ namespace Telegram\Objects\Contracts;
 
 /**
  * Interface for objects that represent downloadable files.
- * 
+ *
  * This interface replaces Telegraph's Downloadable contract
  * for framework independence.
  */

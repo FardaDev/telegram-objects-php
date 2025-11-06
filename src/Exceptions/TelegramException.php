@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /**
  * Extracted from: vendor_sources/telegraph/src/Exceptions/TelegraphException.php
@@ -10,7 +12,7 @@ namespace Telegram\Objects\Exceptions;
 
 /**
  * Base exception for all Telegram Objects library errors.
- * 
+ *
  * Provides a foundation for all specialized exceptions in the library.
  */
 class TelegramException extends \Exception
@@ -26,7 +28,7 @@ class TelegramException extends \Exception
     public static function invalidData(string $field, mixed $value, string $expectedType): static
     {
         $valueType = get_debug_type($value);
-        
+
         return new static("Invalid data for field '{$field}': expected {$expectedType}, got {$valueType}");
     }
 
@@ -53,7 +55,7 @@ class TelegramException extends \Exception
     public static function invalidEnumValue(string $value, array $allowedValues, string $context): static
     {
         $allowed = implode(', ', $allowedValues);
-        
+
         return new static("Invalid value '{$value}' for {$context}. Allowed values: {$allowed}");
     }
 }

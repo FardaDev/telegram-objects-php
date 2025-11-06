@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Telegram\Objects\Support;
 
@@ -6,9 +8,9 @@ use Telegram\Objects\Contracts\ArrayableInterface;
 
 /**
  * Lightweight collection implementation to replace Laravel's Collection.
- * 
+ *
  * Provides essential collection methods without framework dependencies.
- * 
+ *
  * @template TKey of array-key
  * @template TValue
  * @implements \IteratorAggregate<TKey, TValue>
@@ -135,7 +137,7 @@ class Collection implements \IteratorAggregate, \Countable, ArrayableInterface
      */
     public function isNotEmpty(): bool
     {
-        return !$this->isEmpty();
+        return ! $this->isEmpty();
     }
 
     /**

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /**
  * Extracted from: vendor_sources/telegraph/src/Exceptions/KeyboardException.php
@@ -10,7 +12,7 @@ namespace Telegram\Objects\Exceptions;
 
 /**
  * Exception thrown for keyboard-related validation errors.
- * 
+ *
  * Handles inline keyboard and reply keyboard validation failures.
  */
 class KeyboardException extends TelegramException

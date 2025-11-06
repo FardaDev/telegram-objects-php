@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /**
  * Extracted from: vendor_sources/telegraph/src/Exceptions/FileException.php
@@ -10,7 +12,7 @@ namespace Telegram\Objects\Exceptions;
 
 /**
  * Exception thrown for file-related validation and processing errors.
- * 
+ *
  * Handles file size, format, and dimension validation failures.
  */
 class FileException extends TelegramException
@@ -76,7 +78,7 @@ class FileException extends TelegramException
     public static function invalidFileExtension(string $extension, array $allowedExtensions, string $fileType = 'file'): static
     {
         $allowed = implode(', ', $allowedExtensions);
-        
+
         return new static("Invalid {$fileType} extension '{$extension}'. Allowed extensions: {$allowed}");
     }
 
@@ -102,7 +104,7 @@ class FileException extends TelegramException
     public static function invalidPhotoRatio(float $ratio, float $maxRatio): static
     {
         $relativeRatio = $ratio < 1 ? 1 / $ratio : $ratio;
-        
+
         return new static(sprintf("Photo aspect ratio (%.2f) exceeds maximum allowed ratio of %.2f", $relativeRatio, $maxRatio));
     }
 

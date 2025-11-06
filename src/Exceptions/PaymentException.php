@@ -1,10 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Telegram\Objects\Exceptions;
 
 /**
  * Exception thrown for payment-related validation errors.
- * 
+ *
  * Handles invoice, payment, and currency validation failures.
  */
 class PaymentException extends TelegramException

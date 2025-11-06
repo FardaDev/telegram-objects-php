@@ -1,10 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Telegram\Objects\Support;
 
 /**
  * Lightweight date/time wrapper for Telegram timestamps.
- * 
+ *
  * Provides essential date/time functionality without Carbon dependency.
  */
 class TelegramDateTime

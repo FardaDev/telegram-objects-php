@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Telegram\Objects\Support;
 
@@ -29,7 +31,7 @@ function array_get(array $array, string $key, $default = null)
         return $array[$key];
     }
 
-    if (!str_contains($key, '.')) {
+    if (! str_contains($key, '.')) {
         return $default;
     }
 

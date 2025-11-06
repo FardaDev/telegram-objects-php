@@ -38,8 +38,11 @@ Convert the feature design into a series of prompts for a code-generation LLM th
   - Add input validation utilities for DTO creation
   - _Requirements: 3.5, 6.2, 8.1, 8.2, 8.3, 8.4, 8.5_
 
+
 - [ ] 4. Extract and implement core DTO classes
-- [ ] 4.1 Implement primary Telegram objects
+- [x] 4.1 Implement primary Telegram objects
+
+
   - Extract and adapt User DTO with strict typing and framework-agnostic dependencies
   - Extract and adapt Chat DTO with all chat type constants and properties
   - Extract and adapt TelegramUpdate DTO as main webhook payload container
@@ -47,7 +50,12 @@ Convert the feature design into a series of prompts for a code-generation LLM th
   - Add source attribution headers to all extracted files referencing original Telegraph files
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 9.1, 9.2, 9.3, 9.4, 9.5_
 
-- [ ] 4.2 Implement Message DTO with media support
+- [x] 4.2 Implement Message DTO with media support
+
+
+
+
+
   - Extract complex Message DTO with all media attachment properties
   - Handle nested object relationships (User, Chat, reply messages)
   - Implement proper date/time handling using TelegramDateTime
