@@ -20,14 +20,11 @@ Thumbs.db
 # PHPUnit / testing
 /phpunit.xml
 /.phpunit.result.cache
+/.phpunit.cache/
 
-# Generated docs
-/docs/_build/
-/docs/html/
-/docs/pdf/
 
-# cloned telegraph package
-/telegraph/
+# Vendor sources (upstream references)
+/vendor_sources/
 
 # Build / artifact directories
 /build/
@@ -37,6 +34,3 @@ Thumbs.db
 node_modules/
 package-lock.json
 yarn.lock
-
-# PHPUnit / testing
-/.phpunit.result.cache
