@@ -118,7 +118,12 @@ Convert the feature design into a series of prompts for a code-generation LLM th
   - Handle poll result aggregation data structures
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 3.5_
 
-- [ ] 6.3 Write tests for interactive DTOs
+- [x] 6.3 Write tests for interactive DTOs
+
+
+
+
+
   - Create unit tests for callback query and inline query DTOs
   - Test all InlineQueryResult variations with proper data
   - Test poll system DTOs with various poll configurations
