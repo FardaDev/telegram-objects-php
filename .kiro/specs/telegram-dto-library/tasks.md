@@ -280,13 +280,14 @@ public static function fromArray(array $data): self
   - Test enum validation in DTO creation
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
 
-- [ ] 10. Extract and implement keyboard system
+- [x] 10. Extract and implement keyboard system
 - [x] 10.1 Implement keyboard classes
 
 
 
   - Extract Keyboard class for inline keyboards, removing Laravel dependencies
   - Extract Button class for inline keyboard buttons
+
   - Extract ReplyKeyboard and ReplyButton classes for reply keyboards
   - Replace Laravel Collection with custom Collection implementation
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
@@ -296,7 +297,7 @@ public static function fromArray(array $data): self
 
 
 
-- [ ] 10.2 Write tests for keyboard system
+- [x] 10.2 Write tests for keyboard system
   - Create unit tests for keyboard builder classes
   - Test button creation and keyboard layout
   - Test keyboard serialization to Telegram API format
@@ -304,18 +305,26 @@ public static function fromArray(array $data): self
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
 
 - [ ] 11. Implement upstream tracking mechanism
-- [ ] 11.1 Create upstream synchronization system
+- [x] 11.1 Create upstream synchronization system
+
+
   - Create upstream.json tracking file with Telegraph repository information
-  - Implement check-upstream.php script to detect changes
+  - Implement scripts/check-upstream.py script to detect changes
   - Add functionality to compare commit hashes and generate diff reports
+  - Create scripts directory and add Python requirements if needed
+  - Add composer script entry for easy execution
   - Create documentation for upstream synchronization process
   - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
 
+
+
+
 - [ ] 11.2 Write tests for upstream tracking
-  - Create unit tests for upstream tracking functionality
+  - Create unit tests for upstream tracking functionality (Python unittest)
   - Test commit hash comparison and change detection
   - Test diff report generation for DTO modifications
   - Verify proper handling of upstream repository states
+  - Test JSON file reading/writing operations
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
 
 - [ ] 12. Create comprehensive documentation and examples

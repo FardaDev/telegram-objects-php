@@ -47,7 +47,11 @@
             "@test:types",
             "@test:unit"
         ],
-        "coverage": "@test:unit --coverage"
+        "coverage": "@test:unit --coverage",
+        "upstream:check": "python scripts/check-upstream.py --check",
+        "upstream:status": "python scripts/check-upstream.py --status",
+        "upstream:install": "pip install -r scripts/requirements.txt",
+        "upstream:test": "python scripts/run_tests.py"
     },
     "config": {
         "sort-packages": true,

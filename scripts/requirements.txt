@@ -1,0 +1,5 @@
+# Python dependencies for upstream tracking scripts
+gitpython>=3.1.0
+
+# Development dependencies (for testing)
+# No additional dependencies needed - using built-in unittest
