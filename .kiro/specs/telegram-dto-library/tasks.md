@@ -131,7 +131,10 @@ Convert the feature design into a series of prompts for a code-generation LLM th
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
 
 - [ ] 7. Extract and implement payment DTO classes
-- [ ] 7.1 Implement payment flow DTOs
+- [x] 7.1 Implement payment flow DTOs
+
+
+
   - Extract Invoice, SuccessfulPayment, RefundedPayment DTOs
   - Extract PreCheckoutQuery DTO for payment validation
   - Add proper currency and amount validation

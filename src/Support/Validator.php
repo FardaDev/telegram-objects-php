@@ -119,6 +119,20 @@ class Validator
     }
 
     /**
+     * Validate email format.
+     *
+     * @param string $email The email to validate
+     * @param string $field The field name
+     * @throws ValidationException
+     */
+    public static function validateEmail(string $email, string $field): void
+    {
+        if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw ValidationException::invalidArrayData("Invalid email format", $field);
+        }
+    }
+
+    /**
      * Get a value from array with optional type validation.
      *
      * @param array<string, mixed> $data The data array
