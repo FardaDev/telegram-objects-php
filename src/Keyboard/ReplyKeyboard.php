@@ -12,6 +12,7 @@ namespace Telegram\Objects\Keyboard;
 
 use Telegram\Objects\Contracts\ArrayableInterface;
 use Telegram\Objects\Support\Collection;
+use Telegram\Objects\Support\Validator;
 
 /**
  * Reply keyboard for Telegram Bot API
@@ -65,6 +66,7 @@ final class ReplyKeyboard implements ArrayableInterface
 
     /**
      * @param array<array-key, array<array-key, array{text: string, request_contact?: bool, request_location?: bool, request_poll?: string[], web_app?: string[]}>> $arrayKeyboard
+     * @throws \Telegram\Objects\Exceptions\ValidationException If required fields are missing or invalid
      */
     public static function fromArray(array $arrayKeyboard): self
     {
@@ -74,18 +76,26 @@ final class ReplyKeyboard implements ArrayableInterface
             $rowButtons = [];
 
             foreach ($buttons as $button) {
-                $rowButton = ReplyButton::make($button['text']);
+                Validator::requireField($button, 'text', 'Reply Button');
 
-                if ($button['request_contact'] ?? false) {
+                $text = Validator::getValue($button, 'text', '', 'string');
+                $rowButton = ReplyButton::make($text);
+
+                $requestContact = Validator::getValue($button, 'request_contact', false, 'bool');
+                if ($requestContact) {
                     $rowButton = $rowButton->requestContact();
                 }
 
-                if ($button['request_location'] ?? false) {
+                $requestLocation = Validator::getValue($button, 'request_location', false, 'bool');
+                if ($requestLocation) {
                     $rowButton = $rowButton->requestLocation();
                 }
 
-                if ($button['request_poll'] ?? false) {
-                    if (($button['request_poll']['type'] ?? false) === 'quiz') {
+                if (array_key_exists('request_poll', $button)) {
+                    $requestPollData = Validator::getValue($button, 'request_poll', [], 'array');
+                    $pollType = Validator::getValue($requestPollData, 'type', 'regular', 'string');
+
+                    if ($pollType === 'quiz') {
                         $rowButton = $rowButton->requestQuiz();
                     } else {
                         $rowButton = $rowButton->requestPoll();
@@ -93,7 +103,10 @@ final class ReplyKeyboard implements ArrayableInterface
                 }
 
                 if (array_key_exists('web_app', $button)) {
-                    $rowButton = $rowButton->webApp($button['web_app']['url']);
+                    $webAppData = Validator::getValue($button, 'web_app', [], 'array');
+                    Validator::requireField($webAppData, 'url', 'Web App');
+                    $webAppUrl = Validator::getValue($webAppData, 'url', '', 'string');
+                    $rowButton = $rowButton->webApp($webAppUrl);
                 }
 
                 $rowButtons[] = $rowButton;

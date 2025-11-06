@@ -12,6 +12,7 @@ namespace Telegram\Objects\Keyboard;
 
 use Telegram\Objects\Contracts\ArrayableInterface;
 use Telegram\Objects\Support\Collection;
+use Telegram\Objects\Support\Validator;
 
 /**
  * Inline keyboard for Telegram Bot API
@@ -55,6 +56,7 @@ final class Keyboard implements ArrayableInterface
 
     /**
      * @param array<array-key, array<array-key, array{text: string, url?: string, callback_data?: string, web_app?: string[], login_url?: string[], switch_inline_query?: string|null, switch_inline_query_current_chat?: string|null, copy_text?: string[]}>> $arrayKeyboard
+     * @throws \Telegram\Objects\Exceptions\ValidationException If required fields are missing or invalid
      */
     public static function fromArray(array $arrayKeyboard): self
     {
@@ -64,10 +66,14 @@ final class Keyboard implements ArrayableInterface
             $rowButtons = [];
 
             foreach ($buttons as $button) {
-                $rowButton = Button::make($button['text']);
+                Validator::requireField($button, 'text', 'Keyboard Button');
+
+                $text = Validator::getValue($button, 'text', '', 'string');
+                $rowButton = Button::make($text);
 
                 if (array_key_exists('callback_data', $button)) {
-                    $params = explode(';', $button['callback_data']);
+                    $callbackData = Validator::getValue($button, 'callback_data', '', 'string');
+                    $params = explode(';', $callbackData);
 
                     foreach ($params as $param) {
                         $colonPos = strpos($param, ':');
@@ -80,27 +86,39 @@ final class Keyboard implements ArrayableInterface
                 }
 
                 if (array_key_exists('url', $button)) {
-                    $rowButton = $rowButton->url($button['url']);
+                    $url = Validator::getValue($button, 'url', '', 'string');
+                    $rowButton = $rowButton->url($url);
                 }
 
                 if (array_key_exists('web_app', $button)) {
-                    $rowButton = $rowButton->webApp($button['web_app']['url']);
+                    $webAppData = Validator::getValue($button, 'web_app', [], 'array');
+                    Validator::requireField($webAppData, 'url', 'Web App');
+                    $webAppUrl = Validator::getValue($webAppData, 'url', '', 'string');
+                    $rowButton = $rowButton->webApp($webAppUrl);
                 }
 
                 if (array_key_exists('login_url', $button)) {
-                    $rowButton = $rowButton->loginUrl($button['login_url']['url']);
+                    $loginUrlData = Validator::getValue($button, 'login_url', [], 'array');
+                    Validator::requireField($loginUrlData, 'url', 'Login URL');
+                    $loginUrl = Validator::getValue($loginUrlData, 'url', '', 'string');
+                    $rowButton = $rowButton->loginUrl($loginUrl);
                 }
 
                 if (array_key_exists('switch_inline_query', $button)) {
-                    $rowButton = $rowButton->switchInlineQuery($button['switch_inline_query'] ?? '');
+                    $switchInlineQuery = Validator::getValue($button, 'switch_inline_query', '', 'string');
+                    $rowButton = $rowButton->switchInlineQuery($switchInlineQuery);
                 }
 
                 if (array_key_exists('switch_inline_query_current_chat', $button)) {
-                    $rowButton = $rowButton->switchInlineQuery($button['switch_inline_query_current_chat'] ?? '')->currentChat();
+                    $switchInlineQueryCurrentChat = Validator::getValue($button, 'switch_inline_query_current_chat', '', 'string');
+                    $rowButton = $rowButton->switchInlineQuery($switchInlineQueryCurrentChat)->currentChat();
                 }
 
                 if (array_key_exists('copy_text', $button)) {
-                    $rowButton = $rowButton->copyText($button['copy_text']['text']);
+                    $copyTextData = Validator::getValue($button, 'copy_text', [], 'array');
+                    Validator::requireField($copyTextData, 'text', 'Copy Text');
+                    $copyText = Validator::getValue($copyTextData, 'text', '', 'string');
+                    $rowButton = $rowButton->copyText($copyText);
                 }
 
                 $rowButtons[] = $rowButton;
