@@ -17,7 +17,8 @@
         "src/Contracts/DownloadableInterface.php",
         "src/Exceptions/TelegramException.php",
         "src/Exceptions/FileException.php",
-        "src/Exceptions/KeyboardException.php"
+        "src/Exceptions/KeyboardException.php",
+        "tests/Unit/DTO/*.php"
     ],
-    "notes": "Initial extraction from Telegraph project for framework-agnostic DTO library. Commit 0f4a6cf4 corresponds to 'Update CHANGELOG' from Telegraph main branch."
+    "notes": "Initial extraction from Telegraph project for framework-agnostic DTO library. Commit 0f4a6cf4 corresponds to 'Update CHANGELOG' from Telegraph main branch. Test files are also tracked for upstream changes."
 }

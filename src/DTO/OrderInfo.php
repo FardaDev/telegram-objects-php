@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 /**
  * Extracted from: vendor_sources/telegraph/src/DTO/OrderInfo.php
- * Telegraph commit: [commit_hash]
- * Date: [date]
+ * Telegraph commit: 0f4a6cf4
+ * Date: 2025-11-07
  */
 
 namespace Telegram\Objects\DTO;

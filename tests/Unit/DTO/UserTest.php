@@ -2,6 +2,12 @@
 
 declare(strict_types=1);
 
+/**
+ * Extracted from: vendor_sources/telegraph/tests/Unit/DTO/UserTest.php
+ * Telegraph commit: 0f4a6cf4
+ * Date: 2025-11-07
+ */
+
 use Telegram\Objects\DTO\User;
 use Telegram\Objects\Exceptions\ValidationException;
 

@@ -6,6 +6,27 @@ Convert the feature design into a series of prompts for a code-generation LLM th
 - Telegraph source code: `#[[file:vendor_sources/telegraph/]]`
 - Complete analysis: `#[[file:vendor_sources/telegraph-analysis.md]]`
 
+**IMPORTANT ATTRIBUTION REQUIREMENTS:**
+All extracted files MUST use the exact attribution format with real values (no placeholders):
+```
+/**
+ * Extracted from: vendor_sources/telegraph/src/[exact_path_to_source_file]
+ * Telegraph commit: [current_commit_from_upstream.json]
+ * Date: YYYY-MM-DD (use actual current date when creating the file)
+ */
+```
+Never use placeholders like [commit_hash], [date], or generic descriptions.
+
+**TEST FILE ATTRIBUTION:**
+Test files that are based on or inspired by Telegraph tests should also include attribution headers using the same format:
+```
+/**
+ * Extracted from: vendor_sources/telegraph/tests/Unit/DTO/[TestFileName].php
+ * Telegraph commit: [current_commit_from_upstream.json]
+ * Date: YYYY-MM-DD (use actual current date when creating the file)
+ */
+```
+
 
 
 
@@ -47,7 +68,7 @@ Convert the feature design into a series of prompts for a code-generation LLM th
   - Extract and adapt Chat DTO with all chat type constants and properties
   - Extract and adapt TelegramUpdate DTO as main webhook payload container
   - Replace Laravel Collection usage with custom Collection implementation
-  - Add source attribution headers to all extracted files referencing original Telegraph files
+  - Add source attribution headers to all extracted files using the exact format: "Extracted from: vendor_sources/telegraph/src/[path]", "Telegraph commit: [current_commit_from_upstream.json]", "Date: YYYY-MM-DD" (use real current date, not placeholders)
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 9.1, 9.2, 9.3, 9.4, 9.5_
 
 - [x] 4.2 Implement Message DTO with media support
@@ -60,7 +81,7 @@ Convert the feature design into a series of prompts for a code-generation LLM th
   - Handle nested object relationships (User, Chat, reply messages)
   - Implement proper date/time handling using TelegramDateTime
   - Add support for all message types (text, media, location, contact, etc.)
-  - Add source attribution header referencing original Telegraph Message.php file
+  - Add source attribution header using exact format: "Extracted from: vendor_sources/telegraph/src/DTO/Message.php", "Telegraph commit: [current_commit_from_upstream.json]", "Date: YYYY-MM-DD" (use real current date, not placeholders)
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 3.1, 3.2, 3.3, 3.4, 9.1, 9.2, 9.3, 9.4, 9.5_
 
 - [x] 4.3 Write comprehensive tests for core DTOs
@@ -141,14 +162,18 @@ Convert the feature design into a series of prompts for a code-generation LLM th
   - Handle payment provider-specific data structures
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 3.5_
 
-- [ ] 7.2 Implement payment detail DTOs
+- [x] 7.2 Implement payment detail DTOs
+
   - Extract OrderInfo, ShippingAddress DTOs
   - Add validation for address and order information
   - Handle optional payment fields properly
   - Implement proper money amount handling
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 3.5_
 
-- [ ] 7.3 Write tests for payment DTOs
+- [x] 7.3 Write tests for payment DTOs
+
+
+
   - Create unit tests for all payment-related DTOs
   - Test currency validation and amount handling
   - Test payment flow scenarios with realistic data
@@ -156,7 +181,10 @@ Convert the feature design into a series of prompts for a code-generation LLM th
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
 
 - [ ] 8. Extract and implement administrative DTO classes
-- [ ] 8.1 Implement chat management DTOs
+- [x] 8.1 Implement chat management DTOs
+
+
+
   - Extract ChatMember, ChatMemberUpdate DTOs
   - Extract ChatInviteLink, ChatJoinRequest DTOs
   - Add proper permission and status validation
@@ -183,7 +211,7 @@ Convert the feature design into a series of prompts for a code-generation LLM th
   - Extract ChatAdminPermissions and ChatPermissions enums
   - Extract Emojis enum for games and polls
   - Extract ReplyButtonType enum for keyboard buttons
-  - Add source attribution headers to all extracted enum files
+  - Add source attribution headers to all extracted enum files using exact format: "Extracted from: vendor_sources/telegraph/src/Enums/[filename]", "Telegraph commit: [current_commit_from_upstream.json]", "Date: YYYY-MM-DD" (use real current date, not placeholders)
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 9.1, 9.2, 9.3, 9.4, 9.5_
 
 - [ ] 9.2 Write tests for enum classes
