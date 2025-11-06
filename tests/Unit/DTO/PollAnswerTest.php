@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /**
  * Extracted from: vendor_sources/telegraph/tests/Unit/DTO/PollAnswerTest.php
@@ -6,9 +8,9 @@
  * Date: [date]
  */
 
+use Telegram\Objects\DTO\Chat;
 use Telegram\Objects\DTO\PollAnswer;
 use Telegram\Objects\DTO\User;
-use Telegram\Objects\DTO\Chat;
 use Telegram\Objects\Exceptions\ValidationException;
 
 it('can create poll answer from array with minimal fields', function () {

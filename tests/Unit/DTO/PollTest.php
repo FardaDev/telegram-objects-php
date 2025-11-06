@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /**
  * Extracted from: vendor_sources/telegraph/tests/Unit/DTO/PollTest.php
@@ -8,7 +10,6 @@
 
 use Telegram\Objects\DTO\Poll;
 use Telegram\Objects\DTO\PollOption;
-use Telegram\Objects\DTO\Entity;
 use Telegram\Objects\Exceptions\ValidationException;
 
 it('can create poll from array with minimal fields', function () {

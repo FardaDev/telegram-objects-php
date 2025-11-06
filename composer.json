@@ -42,12 +42,26 @@
         "test:lint": "php vendor/bin/php-cs-fixer fix -v --dry-run",
         "test:types": "vendor/bin/phpstan analyse --ansi --memory-limit=-1",
         "test:unit": "vendor/bin/pest --colors=always",
+        "test:unit:filter": "vendor/bin/pest --colors=always --filter",
         "test": [
             "@test:lint",
             "@test:types",
             "@test:unit"
         ],
-        "coverage": "@test:unit --coverage"
+        "test:quick": [
+            "@test:unit"
+        ],
+        "test:ci": [
+            "@test:lint",
+            "@test:types",
+            "@test:unit --coverage --min=80"
+        ],
+        "coverage": "@test:unit --coverage",
+        "coverage:html": "@test:unit --coverage-html coverage",
+        "check": [
+            "@test:lint",
+            "@test:types"
+        ]
     },
     "config": {
         "sort-packages": true,

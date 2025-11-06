@@ -90,14 +90,14 @@ it('throws exception for text too short', function () {
         'text' => '',
         'voter_count' => 5,
     ]);
-})->throws(ValidationException::class, 'minimum length: 1');
+})->throws(ValidationException::class, 'invalid length of 0 characters');
 
 it('throws exception for text too long', function () {
     PollOption::fromArray([
         'text' => str_repeat('a', 101),
         'voter_count' => 5,
     ]);
-})->throws(ValidationException::class, 'maximum length: 100');
+})->throws(ValidationException::class, 'invalid length of 101 characters');
 
 it('throws exception for negative voter count', function () {
     PollOption::fromArray([
