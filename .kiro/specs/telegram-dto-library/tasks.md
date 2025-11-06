@@ -39,7 +39,7 @@ Convert the feature design into a series of prompts for a code-generation LLM th
   - _Requirements: 3.5, 6.2, 8.1, 8.2, 8.3, 8.4, 8.5_
 
 
-- [ ] 4. Extract and implement core DTO classes
+- [x] 4. Extract and implement core DTO classes
 - [x] 4.1 Implement primary Telegram objects
 
 
@@ -63,29 +63,34 @@ Convert the feature design into a series of prompts for a code-generation LLM th
   - Add source attribution header referencing original Telegraph Message.php file
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 3.1, 3.2, 3.3, 3.4, 9.1, 9.2, 9.3, 9.4, 9.5_
 
-- [ ] 4.3 Write comprehensive tests for core DTOs
+- [x] 4.3 Write comprehensive tests for core DTOs
+
+
   - Create unit tests for User, Chat, Message, and TelegramUpdate DTOs
   - Test serialization/deserialization round-trips (fromArray → toArray)
   - Verify all properties are included in toArray() output using reflection
   - Test validation and error conditions with invalid input data
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
 
-- [ ] 5. Extract and implement media DTO classes
-- [ ] 5.1 Implement basic media DTOs
+- [x] 5. Extract and implement media DTO classes
+- [x] 5.1 Implement basic media DTOs
+
   - Extract Photo, Video, Audio, Voice, Document DTOs
   - Remove Laravel dependencies and add strict typing
   - Implement file size and dimension properties with proper validation
   - Add support for file download interfaces
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
 
-- [ ] 5.2 Implement specialized media DTOs
+- [x] 5.2 Implement specialized media DTOs
+
   - Extract Animation, Sticker DTOs for animated content
   - Extract Location, Venue, Contact DTOs for location-based content
   - Implement Attachment utility DTO for file handling
   - Add proper validation for media-specific properties
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 3.5_
 
-- [ ] 5.3 Write tests for media DTOs
+- [x] 5.3 Write tests for media DTOs
+
   - Create unit tests for all media DTO classes
   - Test file property validation and edge cases
   - Verify proper handling of optional media properties
@@ -93,7 +98,10 @@ Convert the feature design into a series of prompts for a code-generation LLM th
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
 
 - [ ] 6. Extract and implement interactive DTO classes
-- [ ] 6.1 Implement callback and inline query DTOs
+- [x] 6.1 Implement callback and inline query DTOs
+
+
+
   - Extract CallbackQuery DTO for inline keyboard interactions
   - Extract InlineQuery DTO for inline bot queries
   - Extract all 11 InlineQueryResult* DTOs for query responses
