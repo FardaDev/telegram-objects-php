@@ -7,7 +7,10 @@ Convert the feature design into a series of prompts for a code-generation LLM th
 - Complete analysis: `#[[file:vendor_sources/telegraph-analysis.md]]`
 
 **IMPORTANT ATTRIBUTION REQUIREMENTS:**
-All extracted files MUST use the exact attribution format with real values (no placeholders):
+All files MUST use the appropriate attribution format with real values (no placeholders):
+
+**FOR FILES THAT EXIST IN TELEGRAPH SOURCE:**
+Use "Extracted from:" format for files that have direct Telegraph equivalents:
 ```
 /**
  * Extracted from: vendor_sources/telegraph/src/[exact_path_to_source_file]
@@ -15,17 +18,25 @@ All extracted files MUST use the exact attribution format with real values (no p
  * Date: YYYY-MM-DD (use actual current date when creating the file)
  */
 ```
-Never use placeholders like [commit_hash], [date], or generic descriptions.
 
-**TEST FILE ATTRIBUTION:**
-Test files that are based on or inspired by Telegraph tests should also include attribution headers using the same format:
+**FOR FILES THAT DON'T EXIST IN TELEGRAPH SOURCE:**
+Use "Created for:" format for new files created specifically for this library:
 ```
 /**
- * Extracted from: vendor_sources/telegraph/tests/Unit/DTO/[TestFileName].php
+ * Created for: telegram-objects-php library
  * Telegraph commit: [current_commit_from_upstream.json]
  * Date: YYYY-MM-DD (use actual current date when creating the file)
+ * 
+ * [Brief explanation of why this file was created - e.g., "Test file for Button class - no equivalent exists in Telegraph source."]
  */
 ```
+
+**TEST FILE ATTRIBUTION:**
+- Test files that exist in Telegraph: Use "Extracted from:" format
+- Test files that don't exist in Telegraph: Use "Created for:" format
+- Test files adapted from Pest to PHPUnit: Use "Extracted from:" with note about adaptation
+
+Never use placeholders like [commit_hash], [date], or generic descriptions.
 
 **CRITICAL VALIDATION CONSISTENCY REQUIREMENTS:**
 All DTO fromArray() methods MUST use consistent validation approach:
@@ -279,6 +290,11 @@ public static function fromArray(array $data): self
   - Extract ReplyKeyboard and ReplyButton classes for reply keyboards
   - Replace Laravel Collection with custom Collection implementation
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
+
+
+
+
+
 
 - [ ] 10.2 Write tests for keyboard system
   - Create unit tests for keyboard builder classes
