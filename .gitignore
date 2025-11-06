@@ -1,0 +1,42 @@
+# PHP / Composer
+/vendor/
+/composer.lock
+
+# Temporary files
+*.log
+*.cache
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+/.idea/
+/.vscode/
+/.cursor/
+/.kiro/
+
+# PHPUnit / testing
+/phpunit.xml
+/.phpunit.result.cache
+
+# Generated docs
+/docs/_build/
+/docs/html/
+/docs/pdf/
+
+# cloned telegraph package
+/telegraph/
+
+# Build / artifact directories
+/build/
+/dist/
+
+# Node/npm (if you ever use frontend docs)
+node_modules/
+package-lock.json
+yarn.lock
+
+# PHPUnit / testing
+/.phpunit.result.cache
