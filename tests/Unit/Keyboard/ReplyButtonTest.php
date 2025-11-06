@@ -6,7 +6,7 @@ declare(strict_types=1);
  * Created for: telegram-objects-php library
  * Telegraph commit: 0f4a6cf45a902e7136a5bbafda26bec36a10e748
  * Date: 2025-11-07
- * 
+ *
  * Test file for ReplyButton class - no equivalent exists in Telegraph source.
  */
 
@@ -128,7 +128,7 @@ final class ReplyButtonTest extends TestCase
 
         // Original should be unchanged
         $this->assertSame(['text' => 'Original'], $original->toArray());
-        
+
         // Modified should have the contact request
         $expected = [
             'text' => 'Original',

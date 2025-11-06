@@ -6,7 +6,7 @@ declare(strict_types=1);
  * Extracted from: vendor_sources/telegraph/tests/Unit/Keyboards/ReplyKeyboardTest.php
  * Telegraph commit: 0f4a6cf45a902e7136a5bbafda26bec36a10e748
  * Date: 2025-11-07
- * 
+ *
  * Adapted for telegram-objects-php library with PHPUnit instead of Pest.
  */
 
@@ -289,7 +289,7 @@ final class ReplyKeyboardTest extends TestCase
         // Both should have their respective buttons since they share the collection
         // This tests that the keyboard returns a new instance, even if collection is shared
         $this->assertNotSame($original, $modified);
-        
+
         // Both should be filled since collection is shared by reference
         $this->assertTrue($original->isFilled());
         $this->assertTrue($modified->isFilled());
