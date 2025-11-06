@@ -7,8 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0-beta] - 2025-11-07
+
 ### Added
-- Initial release of telegram-objects-php library
+- Initial beta release of telegram-objects-php library
 - Complete set of Telegram Bot API DTOs extracted from DefStudio/Telegraph
 - Framework-agnostic implementation with PHP 8.1+ support
 - Comprehensive test suite with 100% coverage of core functionality
@@ -94,15 +96,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Immutable object design where appropriate
 - Framework-agnostic implementation
 
-## [1.0.0] - 2025-11-07
+## [0.1.0-beta] - 2025-11-07
 
 ### Added
-- Initial stable release
+- Initial beta release for community testing
 - Complete Telegram Bot API DTO coverage
 - Framework-agnostic design
 - Comprehensive documentation
 - Full test suite
 - Upstream synchronization system
+
+### Beta Notes
+- This is a beta release for community testing and feedback
+- API may change based on user feedback
+- Production use is not recommended until stable release
 
 ---
 
