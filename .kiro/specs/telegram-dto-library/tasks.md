@@ -259,7 +259,9 @@ public static function fromArray(array $data): self
   - Add source attribution headers to all extracted enum files using exact format: "Extracted from: vendor_sources/telegraph/src/Enums/[filename]", "Telegraph commit: [current_commit_from_upstream.json]", "Date: YYYY-MM-DD" (use real current date, not placeholders)
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 9.1, 9.2, 9.3, 9.4, 9.5_
 
-- [ ] 9.2 Write tests for enum classes
+- [x] 9.2 Write tests for enum classes
+
+
   - Create unit tests for all enum classes
   - Test constant availability and values
   - Verify enum usage in related DTO classes
