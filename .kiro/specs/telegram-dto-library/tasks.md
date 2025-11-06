@@ -108,7 +108,10 @@ Convert the feature design into a series of prompts for a code-generation LLM th
   - Remove Laravel dependencies and add proper validation
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
 
-- [ ] 6.2 Implement poll system DTOs
+- [x] 6.2 Implement poll system DTOs
+
+
+
   - Extract Poll, PollAnswer, PollOption DTOs
   - Add support for quiz polls and regular polls
   - Implement proper validation for poll constraints
