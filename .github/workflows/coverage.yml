@@ -30,7 +30,7 @@ jobs:
         run: vendor/bin/pest tests --coverage --coverage-clover=coverage.xml
       
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           files: ./coverage.xml
           fail_ci_if_error: false
