@@ -14,10 +14,8 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest]
-        php: ['8.3']
-        # Temporarily reduced to save CI minutes while debugging
-        # Full matrix: os: [ubuntu-latest, windows-latest], php: ['8.1', '8.2', '8.3']
+        os: [ubuntu-latest, windows-latest]
+        php: ['8.1', '8.2', '8.3']
     
     steps:
       - name: Checkout code
@@ -47,17 +45,6 @@ jobs:
       
       - name: Dump autoload
         run: composer dump-autoload
-      
-      - name: Debug - Verify test directory
-        run: |
-          pwd
-          ls -la tests/ || dir tests
-          find tests -name "*Test.php" -type f | head -10 || echo "Find command not available"
-      
-      - name: Debug - Verify Pest
-        run: |
-          vendor/bin/pest --version
-          vendor/bin/pest --list-tests || echo "List tests failed"
       
       - name: Run code style checks
         run: composer test:lint
