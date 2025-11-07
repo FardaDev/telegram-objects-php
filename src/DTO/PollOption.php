@@ -3,9 +3,10 @@
 declare(strict_types=1);
 
 /**
- * Extracted from: vendor_sources/telegraph/src/DTO/PollOption.php
+ * Inspired by: defstudio/telegraph (https://github.com/defstudio/telegraph)
+ * Original file: src/DTO/PollOption.php
  * Telegraph commit: 0f4a6cf4
- * Date: 2025-11-06
+ * Adapted: 2025-11-06
  */
 
 namespace Telegram\Objects\DTO;

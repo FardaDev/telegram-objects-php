@@ -2,6 +2,12 @@
 
 declare(strict_types=1);
 
+/**
+ * Created for: telegram-objects-php (https://github.com/FardaDev/telegram-objects-php)
+ * Purpose: Test suite for Emojis enum - no equivalent exists in Telegraph source
+ * Created: 2025-11-07
+ */
+
 namespace Telegram\Objects\Tests\Unit\Enums;
 
 use PHPUnit\Framework\TestCase;

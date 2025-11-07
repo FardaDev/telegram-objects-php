@@ -2,6 +2,12 @@
 
 declare(strict_types=1);
 
+/**
+ * Created for: telegram-objects-php (https://github.com/FardaDev/telegram-objects-php)
+ * Purpose: Lightweight collection implementation to replace Laravel's Collection dependency
+ * Created: 2025-11-06
+ */
+
 namespace Telegram\Objects\Support;
 
 use Telegram\Objects\Contracts\ArrayableInterface;

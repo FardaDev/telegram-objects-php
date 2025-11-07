@@ -3,11 +3,12 @@
 declare(strict_types=1);
 
 /**
- * Extracted from: vendor_sources/telegraph/tests/Unit/Keyboards/ReplyKeyboardTest.php
+ * Inspired by: defstudio/telegraph (https://github.com/defstudio/telegraph)
+ * Original file: tests/Unit/Keyboards/ReplyKeyboardTest.php
  * Telegraph commit: 0f4a6cf45a902e7136a5bbafda26bec36a10e748
- * Date: 2025-11-07
+ * Adapted: 2025-11-07
  *
- * Adapted for telegram-objects-php library with PHPUnit instead of Pest.
+ * Note: Adapted for telegram-objects-php library with PHPUnit instead of Pest.
  */
 
 namespace Telegram\Objects\Tests\Unit\Keyboard;

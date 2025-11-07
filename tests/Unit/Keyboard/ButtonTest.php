@@ -3,11 +3,9 @@
 declare(strict_types=1);
 
 /**
- * Created for: telegram-objects-php library
- * Telegraph commit: 0f4a6cf45a902e7136a5bbafda26bec36a10e748
- * Date: 2025-11-07
- *
- * Test file for Button class - no equivalent exists in Telegraph source.
+ * Created for: telegram-objects-php (https://github.com/FardaDev/telegram-objects-php)
+ * Purpose: Test file for Button class - no equivalent exists in Telegraph source
+ * Created: 2025-11-07
  */
 
 namespace Telegram\Objects\Tests\Unit\Keyboard;

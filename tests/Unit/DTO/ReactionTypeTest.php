@@ -3,9 +3,10 @@
 declare(strict_types=1);
 
 /**
- * Extracted from: vendor_sources/telegraph/tests/Unit/DTO/ReactionTypeTest.php
+ * Inspired by: defstudio/telegraph (https://github.com/defstudio/telegraph)
+ * Original file: tests/Unit/DTO/ReactionTypeTest.php
  * Telegraph commit: 0f4a6cf4
- * Date: 2025-11-07
+ * Adapted: 2025-11-07
  */
 
 use Telegram\Objects\DTO\ReactionType;

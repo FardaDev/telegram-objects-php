@@ -18,9 +18,12 @@ The library serves as a clean, strongly-typed data layer that can be used by any
 - **Maintainer**: Mansour M (https://github.com/MansourM)
 
 **Source Attribution:**
-- Simple header format: reference to original file and extraction date
-- Maintains traceability to Telegraph source files
-- General Telegraph attribution in project README
+- Two distinct header templates for different file origins
+- "Inspired by" format for Telegraph-adapted files with commit tracking
+- "Created for" format for library-specific files with purpose description
+- Maintains full traceability to Telegraph source files
+- Complete attribution documentation in `docs/attribution-template.md`
+- General Telegraph attribution in project README and LICENSE
 
 ## Architecture
 
@@ -93,15 +96,47 @@ examples/
 
 ### 1. DTO Base Structure
 
-All DTO classes follow a consistent pattern with source attribution:
+All DTO classes follow a consistent pattern with source attribution headers.
+
+#### Header Templates
+
+**For files inspired by Telegraph source:**
+```php
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Inspired by: defstudio/telegraph (https://github.com/defstudio/telegraph)
+ * Original file: src/DTO/User.php
+ * Telegraph commit: 0f4a6cf4
+ * Adapted: 2025-11-06
+ */
+```
+
+**For files created specifically for this library:**
+```php
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Created for: telegram-objects-php (https://github.com/FardaDev/telegram-objects-php)
+ * Purpose: [Brief description of why this file was created]
+ * Created: 2025-11-07
+ */
+```
+
+#### DTO Implementation Pattern
 
 ```php
 <?php declare(strict_types=1);
 
 /**
- * Extracted from: vendor_sources/telegraph/src/DTO/User.php
+ * Inspired by: defstudio/telegraph (https://github.com/defstudio/telegraph)
+ * Original file: src/DTO/User.php
  * Telegraph commit: 0f4a6cf4
- * Date: 2025-11-06
+ * Adapted: 2025-11-06
  */
 
 namespace Telegram\Objects\DTO;

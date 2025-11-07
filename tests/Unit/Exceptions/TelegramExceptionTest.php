@@ -2,6 +2,12 @@
 
 declare(strict_types=1);
 
+/**
+ * Created for: telegram-objects-php (https://github.com/FardaDev/telegram-objects-php)
+ * Purpose: Test suite for TelegramException class - no equivalent exists in Telegraph source
+ * Created: 2025-11-06
+ */
+
 use Telegram\Objects\Exceptions\TelegramException;
 
 it('can create exception for invalid data', function () {
