@@ -44,8 +44,6 @@ class Validator
      */
     public static function validateType(mixed $value, string $expectedType, string $field): void
     {
-        $actualType = get_debug_type($value);
-
         if (! self::isTypeMatch($value, $expectedType)) {
             throw ValidationException::invalidType($field, $expectedType, $value);
         }
