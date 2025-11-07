@@ -43,6 +43,9 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-interaction
       
+      - name: Dump autoload
+        run: composer dump-autoload
+      
       - name: Run code style checks
         run: composer test:lint
       

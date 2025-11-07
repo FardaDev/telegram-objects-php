@@ -39,7 +39,4 @@ declare(strict_types=1);
 |
 */
 
-function something(): void
-{
-    // ..
-}
+// Helper functions can be defined here if needed
