@@ -1,16 +1,27 @@
-MIT License
+## MIT-C LICENSE
+### MIT with Commercial Attribution
 
-Copyright (c) 2025 FardaDev
+#### Author: Mansour M
+#### Repo: https://github.com/FardaDev/telegram-objects-php
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+of this software and associated documentation files (the "Software"), to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1.	**Commercial Attribution**: If the Software is used in a commercial product
+	where it constitutes a **primary or core component** (e.g., where the
+	business or product revolves around the Software's functionality), the
+	following attribution must be displayed clearly and prominently:
+	**"Powered by telegram-objects-php"**. The attribution must include a followable
+	link to the original repository. This attribution must be visible to all
+	end users of the commercial product and cannot be hidden or obscured.
+
+2.	The above copyright notice and this permission notice shall be included
+	in all copies or substantial portions of the Software.
+
+3.	The Software may be used freely in non-commercial and open-source projects
+	without specific attribution, though recognition would be appreciated.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -22,15 +33,10 @@ SOFTWARE.
 
 ---
 
-## Attribution
+## Attribution to Upstream Project
 
-This library contains code inspired and adapted from DefStudio/Telegraph:
+This project is inspired by and adapted from DefStudio/Telegraph:
+https://github.com/defstudio/telegraph
 
-Original Project: https://github.com/defstudio/telegraph
-Original License: MIT License
-Original Copyright: (c) 2022 DefStudio
-
-The original Telegraph project is also licensed under the MIT License, which
-permits inspired, modification, and redistribution under the same license
-terms. All inspired files maintain attribution headers indicating their
-source and the specific Telegraph commit they were inspired from.
+DefStudio/Telegraph is licensed under the MIT License.
+Copyright (c) DefStudio and contributors.
