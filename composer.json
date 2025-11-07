@@ -10,7 +10,7 @@
         "framework-agnostic"
     ],
     "homepage": "https://github.com/FardaDev/telegram-objects-php",
-    "license": "MIT-C",
+    "license": "MIT",
     "authors": [
         {
             "name": "Mansour M",

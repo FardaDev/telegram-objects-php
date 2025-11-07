@@ -1,27 +1,16 @@
-## MIT-C LICENSE
-### MIT with Commercial Attribution
+MIT License
 
-#### Author: Mansour M
-#### Repo: https://github.com/FardaDev/telegram-objects-php
+Copyright (c) 2025 Mansour M
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, subject to the following conditions:
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-1.	**Commercial Attribution**: If the Software is used in a commercial product
-	where it constitutes a **primary or core component** (e.g., where the
-	business or product revolves around the Software's functionality), the
-	following attribution must be displayed clearly and prominently:
-	**"Powered by telegram-objects-php"**. The attribution must include a followable
-	link to the original repository. This attribution must be visible to all
-	end users of the commercial product and cannot be hidden or obscured.
-
-2.	The above copyright notice and this permission notice shall be included
-	in all copies or substantial portions of the Software.
-
-3.	The Software may be used freely in non-commercial and open-source projects
-	without specific attribution, though recognition would be appreciated.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
