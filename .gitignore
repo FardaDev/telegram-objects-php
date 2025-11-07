@@ -22,7 +22,9 @@ Thumbs.db
 
 
 # Vendor sources (upstream references)
-/vendor_sources/
+# Keep root-level markdown files for analysis, ignore everything else
+/vendor_sources/*
+!/vendor_sources/*.md
 
 # Build / artifact directories
 /build/
