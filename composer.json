@@ -41,7 +41,7 @@
         "lint": "php vendor/bin/php-cs-fixer fix -v",
         "test:lint": "php vendor/bin/php-cs-fixer fix -v --dry-run",
         "test:types": "vendor/bin/phpstan analyse --ansi --memory-limit=-1",
-        "test:unit": "vendor/bin/pest --colors=always",
+        "test:unit": "vendor/bin/pest",
         "test": [
             "@test:lint",
             "@test:types",
