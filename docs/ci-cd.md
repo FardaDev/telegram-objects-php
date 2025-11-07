@@ -148,8 +148,7 @@ No secrets required for basic workflows. Optional:
 ## Troubleshooting
 
 ### Tests failing on Windows
-- Check line endings (CRLF vs LF)
-- Verify path separators in tests
+- Verify path separators in tests (use `/` not `\`)
 
 ### Coverage upload fails
 - Ensure Codecov token is set (if private repo)
